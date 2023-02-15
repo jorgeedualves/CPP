@@ -18,8 +18,8 @@ conformidade com o padrão C++98
   </tr>
    <tr>
     <td>Ex00: Megafone</td>
-    <td>escreva um programa que se comporte da seguinte maneira:</td>
-    <td>$>./megaphone "shhhhh... I think the students are asleep..."<br>
+    <td>Escreva um programa que se comporte da seguinte maneira:<br>
+    $>./megaphone "shhhhh... I think the students are asleep..."<br>
         SHHHHH... I THINK THE STUDENTS ARE ASLEEP... <br>
         $>./megaphone Damnit " ! " "Sorry students, I thought this thing was off." <br>
         DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF. <br>
