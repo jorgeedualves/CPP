@@ -6,32 +6,46 @@ using std::string;
 // {
 //     private:
 
-//     char *contats[8];
+//     char *contats[3];
 // };
 
 class Contact
 {
     private:
-    string FirstName;
-    string LastName;
-    int PhoneNumber;
-
+        string FirstName;
+        string LastName;
+        int PhoneNumber;
     public:
-    void Add()
-    {   
-        std::cout << "Digite um nome" << std::endl;
-        std::cin >> FirstName;
-        std::cout << "Digite o Sobrenome:" << LastName << std::endl;
-        std::cin >> LastName;
-        std::cout << "Digite telefone:" << PhoneNumber << std::endl;
-        std::cin >> PhoneNumber;
-        void Print(string FirstName, string LastName, int PhoneNumber);
-        
-    };
+        Contact();
+        void Add();
+        void Print();
+        void search();
 
 };
 
-void Print(string FirstName, string LastName, int PhoneNumber)
+Contact::Contact()
+{
+    FirstName = "";
+    LastName = "";
+    PhoneNumber = 0;
+}
+
+void Contact::search()
+{
+    Print();
+}
+
+void Contact::Add()
+{   
+    std::cout << "Digite um nome" << std::endl;
+    std::cin >> FirstName;
+    std::cout << "Digite o Sobrenome:" << LastName << std::endl;
+    std::cin >> LastName;
+    std::cout << "Digite telefone:" << PhoneNumber << std::endl;
+    std::cin >> PhoneNumber;     
+};
+
+void Contact::Print()
 {
         std::cout << "Nome: " << FirstName << std::endl;
         std::cout << "Sobrenome: " << LastName << std::endl;
@@ -40,11 +54,33 @@ void Print(string FirstName, string LastName, int PhoneNumber)
 
 int main(void)
 {
-    Contact contact1;
-    Contact contact2;
+    Contact contact[3];
+    int i;
+    int count;
+    int option;
 
-    contact1.Add();
-    contact2.Add();
+    std::cout << "Opções: 1 = Add, 2 = Seach, 3 = Exit" << std::endl;
+    std::cin >> option;
 
+
+    while(option != 3)
+    {
+        switch (option)
+        {
+        case 1:
+            std::cout << "How many contacts will you add?" << std::endl;
+            std::cin >> count; 
+            for(i = 0; i < count; i++)
+                contact[i].Add();
+            break;
+        case 2:
+            std::cout << "Which contacts do you want to look for?" << std::endl;
+            std::cin >> count;
+            contact[count].search();
+            break;
+        default:
+            break;
+        }
+    }
     return (0);
 }
