@@ -6,26 +6,38 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:52:42 by joeduard          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:32 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:03:57 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <iostream>
-// using std::string;
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
-// class PhoneBook
-// {
-//     private:
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
-//     char *contats[8];
-// };
+#include "Contact.hpp"
+class PhoneBook
+{
+    private:
+        Contact _contacts[8];
+        int _index;
+        int _count;
 
-// class Contats
-// {
-//     private:
-//     char *contat[1];
+    public:
+        PhoneBook(void);
+        ~PhoneBook(void);
 
-//     public:
-//     void InsertContat(const string name);
+    	void addContact(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret);
+    
+    	void printOneContact(void);
+    
+    	void printAllContacts(void);
 
-// };
+    	void searchContact(int index);
+    
+};
+
+#endif

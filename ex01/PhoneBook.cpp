@@ -1,86 +1,50 @@
-#include <iostream>
-using std::string;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
+/*   Updated: 2023/03/02 16:04:02 by joeduard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "PhoneBook.hpp"
 
-// class PhoneBook
-// {
-//     private:
-
-//     char *contats[3];
-// };
-
-class Contact
+PhoneBook::PhoneBook(void)
 {
-    private:
-        string FirstName;
-        string LastName;
-        int PhoneNumber;
-    public:
-        Contact();
-        void Add();
-        void Print();
-        void search();
-
-};
-
-Contact::Contact()
-{
-    FirstName = "";
-    LastName = "";
-    PhoneNumber = 0;
+  this->_index = 0;
+  this->_count = 0;
 }
 
-void Contact::search()
+PhoneBook::~PhoneBook(void)
 {
-    Print();
+  return;
 }
 
-void Contact::Add()
-{   
-    std::cout << "Digite um nome" << std::endl;
-    std::cin >> FirstName;
-    std::cout << "Digite o Sobrenome:" << LastName << std::endl;
-    std::cin >> LastName;
-    std::cout << "Digite telefone:" << PhoneNumber << std::endl;
-    std::cin >> PhoneNumber;     
-};
-
-void Contact::Print()
+void PhoneBook::addContact(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret)
 {
-        std::cout << "Nome: " << FirstName << std::endl;
-        std::cout << "Sobrenome: " << LastName << std::endl;
-        std::cout << "Telefone: " << PhoneNumber << std::endl;
-};
+  this->_contacts[this->_index].setFirstName(firstName);
+  this->_contacts[this->_index].setLastName(lastName);
+  this->_contacts[this->_index].setNickName(nickName);
+  this->_contacts[this->_index].setPhoneNumber(phoneNumber);
+  this->_contacts[this->_index].setDarkestSecret(darkestSecret);
+}
 
-int main(void)
+void PhoneBook::searchContact(int index)
 {
-    Contact contact[3];
-    int i;
-    int count;
-    int option;
+    return ;
+}
 
-    std::cout << "Opções: 1 = Add, 2 = Seach, 3 = Exit" << std::endl;
-    std::cin >> option;
+void PhoneBook::printAllContacts(void)
+{
+    std::cout << "| Index |   First Name   |   Last Name   |   NickName   |" << std::endl;
+    std::cout << "---------------------------------------------------------" << std::endl;
 
+}
 
-    while(option != 3)
-    {
-        switch (option)
-        {
-        case 1:
-            std::cout << "How many contacts will you add?" << std::endl;
-            std::cin >> count; 
-            for(i = 0; i < count; i++)
-                contact[i].Add();
-            break;
-        case 2:
-            std::cout << "Which contacts do you want to look for?" << std::endl;
-            std::cin >> count;
-            contact[count].search();
-            break;
-        default:
-            break;
-        }
-    }
-    return (0);
+void PhoneBook::printOneContact(void)
+{
+
 }
