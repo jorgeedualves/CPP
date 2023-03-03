@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:52:42 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 16:03:57 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/02 22:25:19 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ class PhoneBook
 
     	void addContact(std::string firstName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret);
     
-    	void printOneContact(void);
+    	void printOneContact(Contact contact);
     
     	void printAllContacts(void);
 
     	void searchContact(int index);
+
+		int getContactsCount(void);
     
 };
 

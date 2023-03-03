@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 16:04:02 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/02 22:25:29 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,23 @@ void PhoneBook::addContact(std::string firstName, std::string lastName, std::str
   this->_contacts[this->_index].setNickName(nickName);
   this->_contacts[this->_index].setPhoneNumber(phoneNumber);
   this->_contacts[this->_index].setDarkestSecret(darkestSecret);
+	if(this->_count < 8)
+		this->_count++;
+	this->_index++;
+	if(this->_index >= 8)
+		this->_index %= 8;
 }
 
 void PhoneBook::searchContact(int index)
 {
-    return ;
+    if(index > 0 && index < this->_count && index < 8)
+    {
+        printOneContact(this->_contacts[index]);
+    }   
+    else
+    {
+        std::cout << "Invalid index!" << std::endl;
+    }
 }
 
 void PhoneBook::printAllContacts(void)
@@ -44,7 +56,12 @@ void PhoneBook::printAllContacts(void)
 
 }
 
-void PhoneBook::printOneContact(void)
+void PhoneBook::printOneContact(Contact contact)
 {
+    std::cout << "First Name: " << contact.getFirstName() << std::endl;
+    std::cout << "Last Name: " << contact.getLastName() << std::endl;
+}
 
+int PhoneBook::getContactsCount(void) {
+  return (this->_count);
 }

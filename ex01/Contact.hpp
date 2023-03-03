@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:16:36 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 15:12:14 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:58:18 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ class Contact
 {
 	//atributos
     private:
-        std::string firstName;
-        std::string lastName;
-		std::string nickName;
-        std::string phoneNumber;
-        std::string darkestSecrect;
+        std::string _firstName;
+        std::string _lastName;
+		std::string _nickName;
+        std::string _phoneNumber;
+        std::string _darkestSecrect;
     
 	//metodos
     public:
