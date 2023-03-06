@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/03 16:44:10 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:40:10 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,25 @@ void PhoneBook::searchContact(int index)
     }
 }
 
+void PhoneBook::formatPrinting(std::string str)
+{
+  if (str.length() > 9)
+    std::cout << std::right << std::setw(10) << str.substr(0, 9) + '.';
+  else
+    std::cout << std::right << std::setw(10) << str;
+}
+
 void PhoneBook::printAllContacts(void)
 {
-    std::cout << "| Index |   First Name   |   Last Name   |   NickName   |" << std::endl;
+    std::cout << "|  Index |   First Name |   Last Name   |   NickName   |" << std::endl;
     std::cout << "---------------------------------------------------------" << std::endl;
     for (int i = 0; i < this->_count; i++)
     {
-      std::cout << this->_contacts[i].getFirstName() << std::endl;
-      std::cout << this->_contacts[i].getLastName() << std::endl;
-      std::cout << this->_contacts[i].getNickName() << std::endl;
-      std::cout << this->_contacts[i].getPhoneNumber() << std::endl;
-      std::cout << this->_contacts[i].getDarkestSecret() << std::endl;
+      std::cout << "| ";
+      std::cout << std::right << std::setw(10) << i + 1;
+      std::cout << "| " << this->_contacts[i].getFirstName();
+      std::cout << "| " << this->_contacts[i].getLastName();
+      std::cout << "| " << this->_contacts[i].getNickName() << std::endl;
     }
 }
 
@@ -67,6 +75,9 @@ void PhoneBook::printOneContact(Contact contact)
 {
     std::cout << "First Name: " << contact.getFirstName() << std::endl;
     std::cout << "Last Name: " << contact.getLastName() << std::endl;
+    std::cout << "Nickname: " << contact.getNickName() << std::endl;
+    std::cout << "Phone Number" << contact.getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
 }
 
 int PhoneBook::getContactsCount(void) {
