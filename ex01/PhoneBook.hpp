@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:52:42 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 22:25:19 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:30:05 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ class PhoneBook
     	void searchContact(int index);
 
 		int getContactsCount(void);
-    
 };
 
 #endif

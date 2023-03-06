@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:29:10 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 22:16:56 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:16:28 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void addContact(PhoneBook &objPhoneBook)
 	std::cout << "Input darkest Secrect: " << std::endl;
 	std::getline(std::cin, darkestSecrect);
 	objPhoneBook.addContact(firstName, lastName, nickName, phoneNumber, darkestSecrect);
-	std::cout << "Contact " << firstName << " added to your phonebook." << std::endl;
+	std::cout << std::endl << "Contact " << firstName << " added to your phonebook." << std::endl;
 }
 
 void searchContact(PhoneBook objPhoneBook)
@@ -79,7 +79,7 @@ int main(void)
         }
         else
         {
-            std::cout << "Ivalid option" << std:: endl;
+        	std::cout << "Invalid option" << std:: endl;
         }
     }
     return (0);

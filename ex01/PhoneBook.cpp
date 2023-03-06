@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 22:25:29 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:44:10 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,14 @@ void PhoneBook::printAllContacts(void)
 {
     std::cout << "| Index |   First Name   |   Last Name   |   NickName   |" << std::endl;
     std::cout << "---------------------------------------------------------" << std::endl;
-
+    for (int i = 0; i < this->_count; i++)
+    {
+      std::cout << this->_contacts[i].getFirstName() << std::endl;
+      std::cout << this->_contacts[i].getLastName() << std::endl;
+      std::cout << this->_contacts[i].getNickName() << std::endl;
+      std::cout << this->_contacts[i].getPhoneNumber() << std::endl;
+      std::cout << this->_contacts[i].getDarkestSecret() << std::endl;
+    }
 }
 
 void PhoneBook::printOneContact(Contact contact)

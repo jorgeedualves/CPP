@@ -16,6 +16,9 @@ conformidade com o padrão C++98
       <td align="center">Exercicios </td>
       <td align="center">Descrição </td>
   </tr>
+  <tr>
+    <td  align="center"colspan="4">Módulo 00</td>
+   </tr>
    <tr>
     <td>Ex00: Megafone</td>
     <td>Escreva um programa que se comporte da seguinte maneira:<br>
@@ -38,7 +41,23 @@ conformidade com o padrão C++98
    </tr>
 
    <tr>
-    <td  align="center"colspan="4">Ex01</td>
+    <td  align="center"colspan="4">Módulo 01</td>
+   </tr>
+   <tr>
+    <td>Ex00: BraiiiiiiinnnzzzZ</td>
+    <td>Primeiro, implemente uma classe Zombie . Ele tem um nome de atributo privado de cadeia de caracteres
+    Adicione uma função de membro void anunciar( void ); para a classe Zumbi.<br>
+	 Os zumbis se anunciam da seguinte forma:<br>
+	 Não imprima os colchetes angulares (< e >). Para um zumbi chamado Foo, a mensagem seria:<br>
+	 Foo: BraiiiiiiinnzzzZ...<br>
+	 Em seguida, implemente as duas funções a seguir:<br><br>
+	 • Zombie* newZombie( std::string name );<br>
+	 Ele cria um zumbi, nomeia e retorna para que você possa usá-lo fora da função escopo<br><br>
+	 • void randomChump( std::string name );<br>
+	 Ele cria um zumbi, nomeia-o, e o zumbi se anuncia.<br><br>
+	 Agora, qual é o objetivo real do exercício? Você tem que determinar em que caso é melhor<br> alocar os zumbis na pilha ou heap.<br><br>
+	 Os zumbis devem ser destruídos quando você não precisar mais deles. O destruidor deve<br>
+	 imprima uma mensagem com o nome do zumbi para fins de depuração.</td>
    </tr>
 
 </table>
