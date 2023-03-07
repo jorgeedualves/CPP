@@ -100,6 +100,7 @@ conformidade com o padrão C++98
     • HumanB pode nem sempre ter uma arma, enquanto HumanA sempre estará armado.<br>
     Se sua implementação estiver correta, a execução do código a seguir imprimirá um ataque com "porrete cravado bruto" e um segundo<br>
     ataque com "algum outro tipo de clube" para ambos os casos de teste:<br>
+    <img src="img/ex03_modulo01.png"><br>
     
    </tr>
 
