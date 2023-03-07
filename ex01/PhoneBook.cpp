@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/06 20:40:10 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:33:57 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,10 @@ void PhoneBook::addContact(std::string firstName, std::string lastName, std::str
 
 void PhoneBook::searchContact(int index)
 {
-    if(index > 0 && index < this->_count && index < 8)
-    {
+    if(index >= 0 && index < this->_count && index < 8)
         printOneContact(this->_contacts[index]);
-    }   
     else
-    {
         std::cout << "Invalid index!" << std::endl;
-    }
 }
 
 void PhoneBook::formatPrinting(std::string str)
@@ -59,15 +55,20 @@ void PhoneBook::formatPrinting(std::string str)
 
 void PhoneBook::printAllContacts(void)
 {
-    std::cout << "|  Index |   First Name |   Last Name   |   NickName   |" << std::endl;
+    std::cout << "|    Index  |First Name | Last Name | NickName  |" << std::endl;
     std::cout << "---------------------------------------------------------" << std::endl;
     for (int i = 0; i < this->_count; i++)
     {
       std::cout << "| ";
       std::cout << std::right << std::setw(10) << i + 1;
-      std::cout << "| " << this->_contacts[i].getFirstName();
-      std::cout << "| " << this->_contacts[i].getLastName();
-      std::cout << "| " << this->_contacts[i].getNickName() << std::endl;
+      std::cout << "| ";
+      formatPrinting(this->_contacts[i].getFirstName());
+      std::cout << "| ";
+      formatPrinting(this->_contacts[i].getLastName());
+      std::cout << "| ";
+      formatPrinting(this->_contacts[i].getNickName());
+      std::cout << "| " << std::endl;
+      std::cout << std::endl;
     }
 }
 
@@ -80,6 +81,7 @@ void PhoneBook::printOneContact(Contact contact)
     std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
 }
 
-int PhoneBook::getContactsCount(void) {
+int PhoneBook::getContactsCount(void)
+{
   return (this->_count);
 }

@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:29:10 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/03 17:16:28 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:54:14 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,13 @@ int main(void)
         std::cin >> option;
 
         if(option == 1)
-        {
             addContact(objPhoneBook);  
-        }
         else if( option == 2)
-        {
             searchContact(objPhoneBook);
-        }
         else if (option == 3)
-        {
             break;
-        }
         else
-        {
         	std::cout << "Invalid option" << std:: endl;
-        }
     }
     return (0);
 }
