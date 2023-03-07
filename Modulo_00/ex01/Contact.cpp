@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:16:39 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 22:04:16 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:23:04 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ std::string Contact::getDarkestSecret(void)
 
 void Contact::setFirstName(std::string firstName)
 {
-    this->_firstName = firstName;
+        this->_firstName = firstName;
 }
 
 void Contact::setLastName(std::string lastName)

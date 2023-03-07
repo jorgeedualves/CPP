@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:16:36 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/02 21:58:18 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:58:18 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #define CONTACT_HPP
 
 #include <string>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
 
 class Contact
 {

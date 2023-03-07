@@ -6,11 +6,39 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:29:10 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/06 20:54:14 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:12:58 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <string>
+
+bool fieldValidation(std::string input, std::string fieldName)
+{
+	for(std::string::iterator i = input.begin(); i != input.end(); ++i)
+	{
+		if(!std::isalnum(*i))
+		{
+			std::cout << fieldName << " - Character not allowed: " << *i << std::endl;
+			return(false);
+		}
+	}
+	return(true);
+}
+
+bool phoneValidation(std::string input, std::string fieldName)
+{
+
+	for(std::string::iterator i = input.begin(); i != input.end(); ++i)
+	{
+		if(!std::isdigit(*i))
+		{
+			std::cout << fieldName << " - Character not allowed: " << *i << std::endl;
+			return(false);
+		}
+	}
+	return(true);
+}
 
 void addContact(PhoneBook &objPhoneBook)
 {
@@ -23,12 +51,20 @@ void addContact(PhoneBook &objPhoneBook)
 	std::cin.ignore();	
 	std::cout << "Input First Name: " << std::endl;
 	std::getline(std::cin, firstName);
+	if(!fieldValidation(firstName, "First Name"))
+		return;
 	std::cout << "Input Last Name: " << std::endl;
 	std::getline(std::cin, lastName);
+	if(!fieldValidation(lastName, "Last Name"))
+		return;
 	std::cout << "Input Nick Name: " << std::endl;
 	std::getline(std::cin, nickName);
+	if(!fieldValidation(nickName, "Nick Name"))
+		return;
 	std::cout << "Input Phone Number: " << std::endl;
 	std::getline(std::cin, phoneNumber);
+	if(!phoneValidation(phoneNumber, "Phone Number"))
+		return;
 	std::cout << "Input darkest Secrect: " << std::endl;
 	std::getline(std::cin, darkestSecrect);
 	objPhoneBook.addContact(firstName, lastName, nickName, phoneNumber, darkestSecrect);
@@ -57,19 +93,19 @@ void searchContact(PhoneBook objPhoneBook)
 int main(void)
 {
     PhoneBook objPhoneBook;
-    int option;
+    std::string option;
 
     while(1)
     {
         std::cout << "Choose one option: " << std::endl;
-        std::cout << "Option: 1 = Add | 2 = Seach | 3 = Exit" << std::endl;
+        std::cout << "Option: ADD | SEARCH | EXIT" << std::endl;
         std::cin >> option;
 
-        if(option == 1)
+        if(option == "ADD")
             addContact(objPhoneBook);  
-        else if( option == 2)
+        else if( option == "SEARCH")
             searchContact(objPhoneBook);
-        else if (option == 3)
+        else if (option == "EXIT")
             break;
         else
         	std::cout << "Invalid option" << std:: endl;
