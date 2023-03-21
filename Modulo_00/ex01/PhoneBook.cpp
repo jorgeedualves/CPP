@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:30:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/06 22:33:57 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/08 22:06:54 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void PhoneBook::searchContact(int index)
         printOneContact(this->_contacts[index]);
     else
         std::cout << "Invalid index!" << std::endl;
+        this->_index = index;
 }
 
 void PhoneBook::formatPrinting(std::string str)
