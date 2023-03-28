@@ -1,3 +1,5 @@
+NAME			=	unnecessary_violence
+
 SOURCES_FILES	=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 SOURCES_DIR		=	./
@@ -9,8 +11,6 @@ HEADERS			=	Weapon.hpp HumanA.hpp HumanB.hpp
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 
 OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
-
-NAME			=	unnecessary_violence
 
 CC				=	c++
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
@@ -28,7 +28,8 @@ $(NAME):			$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
-run:				./$(NAME)
+run:				
+					./$(NAME)
 
 clean:
 					$(RM) $(OBJ_DIR)

@@ -29,6 +29,9 @@ $(NAME):			$(OBJ_DIR) $(OBJECTS)
 $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
+run:				
+					./$(NAME)
+
 clean:
 					$(RM) $(OBJ_DIR)
 

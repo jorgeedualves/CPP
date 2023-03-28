@@ -20,6 +20,7 @@ all:	$(NAME)
 $(NAME):	$(OBJECT)
 			@$(COMPILE) $(FLAGS) $(OBJECT) -o $(NAME)
 			@echo "$(GREEN)Executable OK!	$(RESET)"
+
 		
 clean:
 			@rm -f $(OBJECT)

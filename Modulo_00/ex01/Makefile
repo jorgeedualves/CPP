@@ -30,6 +30,9 @@ $(NAME):			$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
+run:				
+					./$(NAME)
+
 clean:
 					$(RM) $(OBJ_DIR)
 
