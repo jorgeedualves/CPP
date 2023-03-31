@@ -29,7 +29,7 @@ $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
 run:				
-					./$(NAME)
+					./$(NAME) file.txt "o" "x"
 
 clean:
 					$(RM) $(OBJ_DIR)
