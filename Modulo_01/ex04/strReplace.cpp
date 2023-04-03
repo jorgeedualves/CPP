@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:18:43 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/30 22:21:09 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:24:44 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,3 @@ std::string replace(const std::string& str, const std::string oldStr, const std:
     }
     return (strReplaced); 
 }
-
-//  argc_2 = argv[1] file a ser lido " Hi world, Hello Jorge como vai"
-//     argc_3 = argv[2] s1 com o texto para ser procurado    " Hello Jorge"
-//     argc_4 = argv[3] s2 com o texto será substituir o s1  " Ola alexandre"
