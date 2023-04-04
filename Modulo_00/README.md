@@ -1,7 +1,7 @@
 <table border="1" width="300">
 
    <tr>
-    <td  align="center"colspan="4">Listas</td>
+    <td  align="center"colspan="4">Lista</td>
    </tr>
   
    <tr>
