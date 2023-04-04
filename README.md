@@ -16,6 +16,10 @@ conformidade com o padrão C++98
     2. **cout** - Significa Saída do Console. Objeto do tipo ostream de saída padrão (standard output);
     3. **cerr** - Objeto do tipo ostream de erro padrão (standard error);
     4. **clog** - Objeto do tipo ostream usado para informações gerais (general information);
+- **Namespace** - É uam região declarativa que fornece uma escopo para os identificadores dentro dela. os indetificadores são:
+    - Nomes de tipos, funções ou variáveis e etc. Para esses tipos de indenficadores, o namespace é uma região declarativa que fornecerá o escopo para isso.
+    Namespaces são usados organizar o código em grupos lógicos e evitar colisõesdo nomes que podem ocorrer quando a base de código incluo vŕias bibliotecas.
+- **Operador de resolução do escopo ::** - É utilizado para identificar e remover ambiguidades de identificadores usados em escopos diferentes. Para mais informações sobre escopo
 
 ##
 
