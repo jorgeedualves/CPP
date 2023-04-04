@@ -18,7 +18,7 @@ conformidade com o padrão C++98
     4. **clog** - Objeto do tipo ostream usado para informações gerais (general information);
 - **Namespace** - É uma região declarativa que fornece uma escopo para os identificadores dentro dela. os indetificadores são:
     - Nomes de tipos, funções ou variáveis e etc. Para esses tipos de indenficadores, o namespace é uma região declarativa que fornecerá o escopo para isso.
-    Namespaces são usados organizar o código em grupos lógicos e evitar colisõesdo nomes que podem ocorrer quando a base de código incluo vŕias bibliotecas.
+    Namespaces são usados para organizar o código em grupos lógicos e evitar colisões de nomes que podem ocorrer quando a base de código inclue várias bibliotecas.
 - **Operador de resolução do escopo ::** - É utilizado para identificar e remover ambiguidades de identificadores usados em escopos diferentes. Para mais informações sobre escopo
 
 ##
