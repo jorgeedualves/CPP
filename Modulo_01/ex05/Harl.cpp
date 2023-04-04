@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:22:15 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/03 22:41:18 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:45:01 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void Harl::error(void)
 	"This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(std::string level) //debug
+void Harl::complain(std::string level)
 {
     std::string vtLevel[4]= {"debug", "info", "warning", "error"};
     void (Harl::*ptFuncs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
