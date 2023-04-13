@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:02:45 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/13 16:05:54 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:54:24 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,13 +246,13 @@ A função retorna uma referência para o objeto std::ostream passado como argum
 
 Em resumo, essa função é útil para imprimir o valor de um objeto Fixed na saída padrão de uma maneira conveniente e legível. É importante destacar que essa função só permite imprimir valores de ponto fixo como valores de ponto flutuante.
  * 
- * @param o 
- * @param i 
+ * @param output_stream
+ * @param fixed_number
  * @return std::ostream& 
  */
-std::ostream &operator<<(std::ostream &o, Fixed const &i)
+std::ostream &operator<<(std::ostream &output_stream, Fixed const &fixed_number)
 {
-	o << i.toFloat();
-	return(o);
+	output_stream << fixed_number.toFloat();
+	return(output_stream);
 }
 
