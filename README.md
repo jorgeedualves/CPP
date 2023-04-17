@@ -26,9 +26,9 @@ conformidade com o padrão C++98
 
 Tudo em C++ é associado a classes e objetos, juntamente com seus atributos e métodos.
 
-- **Classe - Uma classe é definida pelo utilizador tipo de dados que podemos utilizar no nosso programa, e funciona como um construtor de objeto, ou um "modelo" para a criação de objetos.
+- **Classe** - Uma classe é definida pelo utilizador tipo de dados que podemos utilizar no nosso programa, e funciona como um construtor de objeto, ou um "modelo" para a criação de objetos.
 
-- Objeto - É criado a partir de uma classe. Para criar um objeto basta especificar as nome da classe, seguido do nome do objeto. Pode-se criar vários objetos de uma classe. 
+- **Objeto** - É criado a partir de uma classe. Para criar um objeto basta especificar as nome da classe, seguido do nome do objeto. Pode-se criar vários objetos de uma classe. 
 
 Em C++, existem três especificadores de acesso:
 
@@ -37,3 +37,34 @@ Em C++, existem três especificadores de acesso:
     protected - membros não podem ser acessados a partir de fora da sala de aula, no entanto, eles podem ser acessados em classes herdadas.
 
 ##
+
+- **Sobrecarga de Operadores** - Permite que a linguagem seja estendida e que você possa fazer somas, multiplicações, conversões e várias outras operações entre os objetos que você criou.
+
+    - A linguagem C++ tem como um de seus objetivos fazer classes e objetos trabalharem de forma similar às variáveis e tipos primitivos (char, int, float, double, wchar_t e bool.)
+    
+    - Para sobrecarregar um operador utiliza-se uma forma especial de função, chamada de função operator:
+    
+      operator+() Sobrecarrega operador de soma;
+      
+      operator*() Sobrecarrega opetador de multipilicação;
+        
+    A sobrecarga permite:
+      Tratar classes como tipos primitivos;
+      Simplificar o uso de objetos dessas classes;
+    
+    A maior parte dos operadores podem ser sobrecarregados através de **métodos** ou **funções**
+   
+   **Restrições**
+   
+   - Usar um operador como método de uma classe
+        - obriga o operando esquerdo a ser um objeto
+   
+   - Os operadores não precisam ser métodos
+        - Mas pelo menos um dos operandos deve ser um objeto de uma classe definida pelo programador
+        
+   - Não é possivel:
+        - Alterar as regras de uso do operador
+            - Alterar a Precedência, número de argumetnos, etc. (operador + requer dois operandos)
+        - Criar operadores
+            - Só é possível sobrescrever operadores existentes. (operador @ não existe na linguagem C++)
+    
