@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:03:28 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/14 00:17:57 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/22 11:41:53 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ Fixed::Fixed(Fixed const &src)
 /**
  * @brief construtor da classe Fixed. Esse construtor recebe um inteiro n como parâmetro e inicializa o objeto Fixed com o valor correspondente a n convertido para o formato de ponto fixo.
 
-O construtor exibe uma mensagem na saída padrão indicando que o construtor foi chamado e, em seguida, define o valor do membro _rawBits como n deslocado fractionalBits posições à esquerda (isto é, n é multiplicado por 2^fractionalBits). O membro _fractionalBits é uma constante que representa o número de bits que serão usados para representar a parte fracionária do número em ponto fixo.
+O construtor exibe uma mensagem na saída padrão indicando que o construtor foi chamado e, em seguida,
+define o valor do membro _rawBits como n deslocado fractionalBits posições à esquerda
+(isto é, n é multiplicado por 2^fractionalBits).
+O membro _fractionalBits é uma constante que representa o número de bits que serão usados para representar
+a parte fracionária do número em ponto fixo.
 
 Em resumo, esse construtor permite que um objeto Fixed seja inicializado a partir de um inteiro e define seu valor interno em ponto fixo de acordo com a quantidade de bits especificados para a parte fracionária.
  * 
@@ -64,28 +68,42 @@ Em resumo, esse construtor permite que um objeto Fixed seja inicializado a parti
 Fixed::Fixed(int const n)
 {
     std::cout << "Int constructor called" << std::endl;
-    this->_rawBits = n << _fractionalBits;
+    this->_rawBits = n << _fractionalBits; // retorna o resulta do valor da casa decimal do parametro
+	std::cout << "-----------rawBits:-------->>>>" << this->_rawBits << std::endl;
 }
 
 /**
- * @brief Construtor da classe Fixed que recebe um valor de ponto flutuante (float) como argumento. O construtor converte o valor de ponto flutuante em um valor de ponto fixo e armazena o resultado na variável membro _rawBits.
+ * @brief Construtor da classe Fixed que recebe um valor de ponto flutuante (float) como argumento. 
+ * O construtor converte o valor de ponto flutuante em um valor de ponto fixo e armazena o resultado na
+ * variável membro _rawBits.
 
-A implementação do construtor usa a função roundf da biblioteca padrão do C++ para arredondar o valor de ponto flutuante para o valor mais próximo de ponto fixo. A função roundf retorna um valor de ponto flutuante arredondado para o inteiro mais próximo.
+A implementação do construtor usa a função roundf da biblioteca padrão do C++ para arredondar o valor de
+ponto flutuante para o valor mais próximo de ponto fixo. A função roundf retorna um valor de ponto
+flutuante arredondado para o inteiro mais próximo.
 
-Antes de chamar a função roundf, o construtor multiplica o valor de ponto flutuante por 2 elevado à potência de _fractionalBits, o que é o mesmo que deslocar os bits do valor de ponto flutuante para a esquerda em _fractionalBits posições. Isso garante que o valor de ponto flutuante seja multiplicado pelo fator correto para se tornar um valor de ponto fixo.
+Antes de chamar a função roundf, o construtor multiplica o valor de ponto flutuante por 2 elevado à
+potência de _fractionalBits, o que é o mesmo que deslocar os bits do valor de ponto flutuante para a
+esquerda em _fractionalBits posições. Isso garante que o valor de ponto flutuante seja multiplicado
+pelo fator correto para se tornar um valor de ponto fixo.
 
-O resultado da multiplicação é convertido em um valor inteiro usando a função static_cast<int>. Esse valor inteiro é armazenado na variável membro _rawBits, que representa o valor de ponto fixo armazenado no objeto Fixed.
+O resultado da multiplicação é convertido em um valor inteiro usando a função static_cast<int>.
+Esse valor inteiro é armazenado na variável membro _rawBits, que representa o valor de ponto fixo
+armazenado no objeto Fixed.
 
-Finalmente, o construtor imprime uma mensagem na saída padrão indicando que o construtor de ponto flutuante foi chamado.
+Finalmente, o construtor imprime uma mensagem na saída padrão indicando que o construtor de ponto
+flutuante foi chamado.
 
-Em resumo, esse construtor é útil para inicializar um objeto Fixed a partir de um valor de ponto flutuante, o que pode ser necessário em situações em que o código precisa trabalhar com diferentes tipos de números ou em cálculos que requerem precisão fixa.
+Em resumo, esse construtor é útil para inicializar um objeto Fixed a partir de um valor de ponto
+flutuante, o que pode ser necessário em situações em que o código precisa trabalhar com diferentes
+tipos de números ou em cálculos que requerem precisão fixa.
  * 
  * @param f 
  */
 Fixed::Fixed(float const f)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->_rawBits = static_cast<int>(roundf(f *(1 << _fractionalBits)));
+    this->_rawBits = static_cast<int>(roundf(f *(1 << _fractionalBits))); 
+	std::cout << "-----------rawBits no float:-------->>>>" << this->_rawBits << std::endl;
 }
 
 /**
@@ -132,7 +150,7 @@ classe Fixed sejam copiados e atribuídos uns aos outros.
  */
 Fixed &Fixed::operator=(Fixed const &src)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator= called" << std::endl;
 	this->setRawBits(src.getRawBits());
 	return (*this);
 }
@@ -140,54 +158,64 @@ Fixed &Fixed::operator=(Fixed const &src)
 
 bool Fixed::operator>(Fixed const &rhs) const // rhs = "right-hand side" (lado direito).
 {
+	std::cout << "operator> called" << std::endl;
 	return (this->_rawBits > rhs.getRawBits());
 }
 
 bool Fixed::operator<(Fixed const &rhs) const
 {
+	std::cout << "operator< called" << std::endl;
 	return (this->_rawBits < rhs.getRawBits());
 }
 
 bool Fixed::operator>=(Fixed const &rhs) const
 {
+	std::cout << "operator>= called" << std::endl;
 	return (this->_rawBits >= rhs.getRawBits());
 }
 
 bool Fixed::operator<=(Fixed const &rhs) const
 {
+	std::cout << "operator<= called" << std::endl;
 	return (this->_rawBits <= rhs.getRawBits());
 }
 
 bool Fixed::operator==(Fixed const &rhs) const
 {
+	std::cout << "operator== called" << std::endl;
 	return (this->_rawBits == rhs.getRawBits());
 }
 
 bool Fixed::operator!=(Fixed const &rhs) const
 {
+	std::cout << "operator!= called" << std::endl;
 	return (this->_rawBits != rhs.getRawBits());
 }
 
 Fixed Fixed::operator+(Fixed const &rhs)
 {
+	std::cout << "operator+ called" << std::endl;
 	Fixed temp(this->toFloat() + rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator-(Fixed const &rhs)
 {
+	std::cout << "operator- called" << std::endl;
 	Fixed temp(this->toFloat() - rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator*(Fixed const &rhs)
 {
+	std::cout << "operator* called" << std::endl;
 	Fixed temp(this->toFloat() * rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator/(Fixed const &rhs)
 {
+	std::cout << "operator/ called" << std::endl;
 	Fixed temp(this->toFloat() / rhs.toFloat());
 	return (temp);
 }
@@ -214,6 +242,7 @@ usada para incrementar o objeto "objeto" e, em seguida, chamar a função "foo()
  */
 Fixed &Fixed::operator++(void)
 {
+	std::cout << "++operator called" << std::endl;
 	++this->_rawBits;
 	return (*this);
 }
@@ -243,9 +272,10 @@ a função não precisar diferenciar entre os dois operadores de incremento.
  */
 Fixed Fixed::operator++(int)
 {
-	Fixed temp = *this;
-	this->_rawBits++;
-	return (temp);
+	std::cout << "operator++ called" << std::endl;
+	Fixed temp = *this; // 1
+	this->_rawBits++;   // 2
+	return (temp);      // 1
 }
 
 /**
@@ -380,6 +410,7 @@ onde "objeto1" e "objeto2" são objetos "Fixed" que serão comparados.
  */
 Fixed &Fixed::max(Fixed &lhs, Fixed &rhs)
 {
+	std::cout << "&Fixed::max member function called" << std::endl;
 	if(lhs.getRawBits() > rhs.getRawBits())
 		return (lhs);						// lhs = "left-hand side" (lado direito).
 	else
@@ -412,6 +443,7 @@ como argumentos para a função.
  */
 Fixed const &Fixed::max(Fixed const &lhs, Fixed const &rhs)
 {
+	std::cout << "const &Fixed::max member function called" << std::endl;
 	if(lhs.getRawBits() > rhs.getRawBits())
 		return (lhs);						// lhs = "left-hand side" (lado direito).
 	else
@@ -462,6 +494,7 @@ em ponto flutuante.
  */
 void Fixed::setRawBits(int const raw)
 {
+	std::cout << "setRawBits member function called" << std::endl;
 	this->_rawBits = raw;
 	return;
 }
@@ -486,6 +519,7 @@ uma vez que os bits fracionários são descartados.
  */
 int Fixed::toInt(void) const
 {
+	std::cout << "toInt member function called" << std::endl;
     return (this->_rawBits >> _fractionalBits);
 }
 
@@ -514,6 +548,7 @@ uma vez que os bits fracionários são representados com menos precisão do que 
  */
 float Fixed::toFloat(void) const
 {
+	std::cout << "toFloat member function called" << std::endl;
     return (static_cast<float>(this->_rawBits) / (1 << _fractionalBits));
 }
 
@@ -534,6 +569,7 @@ Em resumo, essa função é útil para imprimir o valor de um objeto Fixed na sa
  */
 std::ostream &operator<<(std::ostream &output_stream, Fixed const &fixed_number)
 {
+	std::cout << "&operator<< friend function called" << std::endl;
 	output_stream << fixed_number.toFloat();
 	return(output_stream);
 }
