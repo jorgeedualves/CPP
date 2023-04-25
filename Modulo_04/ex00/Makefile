@@ -1,12 +1,12 @@
 NAME			=	Animal
 
-SOURCES_FILES	=	Animal.cpp Cat.cpp Dog.cpp main.cpp
+SOURCES_FILES	=	Animal.cpp Cat.cpp Dog.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 
 SOURCES_DIR		=	./
 
 OBJ_DIR			=	objects
 
-HEADERS			=	Animal.hpp Cat.hpp Dog.hpp
+HEADERS			=	Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 

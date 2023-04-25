@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:11:28 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 18:15:28 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:53:16 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void Animal::setType(std::string const type)
 }
 void Animal::makeSound(void) const
 {
-	std::cout << "SOUND\n";
+	std::cout << "🐾\n";
 }
 
 std::ostream &operator <<(std::ostream &out, Animal const &in)

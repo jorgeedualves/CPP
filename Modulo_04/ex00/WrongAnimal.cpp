@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:02:43 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 22:03:34 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:00:22 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 {
-    std::cout << "WrongAnimal Default Cosntructor\n";
+    std::cout << "WrongAnimal Default Constructor\n";
 }
 
-WrongAnimal::WrongAnimal(std::string const type) : _type("WrongAnimal")
+WrongAnimal::WrongAnimal(std::string const type) : _type(type)
 {
-    std::cout << "WrongAnimal Parametric\n";
+    std::cout << "WrongAnimal Parametric called\n";
 }
 
 WrongAnimal::WrongAnimal(WrongAnimal const &src)
@@ -53,7 +53,7 @@ void WrongAnimal::setType(std::string const type)
 
 void WrongAnimal::makeSound(void) const
 {
-    std::cout << "WrongAnimalllllll\n";
+    std::cout << "WrongAnimal 👾\n";
 }
 
 std::ostream &operator<<(std::ostream &out, WrongAnimal const &in)

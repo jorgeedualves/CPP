@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:04:03 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 18:18:13 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:01:02 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Dog::Dog(void) : Animal("Dog")
 {
-    std::cout << "Dog Default called\n";
+    std::cout << "Dog Default Constructor called\n";
 }
 
 Dog::Dog(Dog const &src) : Animal("Dog")
@@ -37,5 +37,5 @@ Dog &Dog::operator=(Dog const &rhs)
 
 void Dog::makeSound(void) const
 {
-    std::cout << "aaUUUUU\n";
+    std::cout << "Aauuuuu 🐕\n";
 }

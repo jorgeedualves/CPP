@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:56:44 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 18:16:32 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:57:47 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ Cat &Cat::operator=(Cat const &rhs)
 
 void Cat::makeSound(void) const
 {
-    std::cout <<"MEAUUUU\n";
+    std::cout <<"Meauuu 🐈\n";
 }
