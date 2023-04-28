@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:57:25 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 10:53:31 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:33:56 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-    std::cout << "AAnimal assignment operator called\n";
+    std::cout << "assignment operator called\n";
     this->_grade = rhs.getGrade();
     return(*this);
 }
