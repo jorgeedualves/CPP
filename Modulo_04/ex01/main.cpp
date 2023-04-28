@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 12:18:41 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/26 15:52:25 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:07:29 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main (void)
 {
     Cat *cat = new Cat();
     const Animal *animals[6];
+    const Animal animal;
 
     std::cout << "**|Brain: |**\n";
     std::cout << *cat->getBrain();

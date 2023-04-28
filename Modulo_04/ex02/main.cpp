@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 12:18:41 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/26 18:34:18 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:07:08 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (void)
 {
     Cat *cat = new Cat();
     const AAnimal *animals[6];
-   // const AAnimal animal; // Objeto da classe abstrata tipo "AAnimal" não é permitido
+  //  const AAnimal animal; // Objeto da classe abstrata tipo "AAnimal" não é permitido
 
     std::cout << "**|Brain: |**\n";
     std::cout << *cat->getBrain();
