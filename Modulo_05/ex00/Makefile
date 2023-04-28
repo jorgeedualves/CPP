@@ -1,6 +1,6 @@
 NAME			=	bureaucrat
 
-SOURCES_FILES	=	Bureaucrat.cpp main.cpp 
+SOURCES_FILES	=	main.cpp Bureaucrat.cpp
 
 SOURCES_DIR		=	./
 
@@ -13,7 +13,7 @@ SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
 
 RM				=	rm -rf
 
@@ -27,7 +27,7 @@ $(NAME):			$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 
 $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
-					
+
 clean:
 					$(RM) $(OBJ_DIR)
 

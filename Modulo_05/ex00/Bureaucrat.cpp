@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureucrat.cpp                                      :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:57:25 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/27 19:13:19 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:53:31 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat(void)
 {
-    std::cout << "Destructor called\n";
+    std::cout << "Destructor called\n\n";
     return;
 }
 
@@ -51,13 +51,11 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 
 const std::string &Bureaucrat::getName(void) const
 {
-    std::cout << "GetName called\n";
     return (this->_name);
 }
 
 int Bureaucrat::getGrade(void) const
 {
-    std::cout << "GetGrade called\n";
     return (this->_grade);
 }
 
@@ -87,7 +85,8 @@ const char* Bureaucrat::GradeTooLowException::what(void) const throw()
     return("Bureaucrat Grade Invalid: to low");
 }
 
-std::ostream &operator<<(std::ostream &out, const Bureaucrat &in)
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &in)
 {
-    out << in.getName() << ", bureacrat grade " << in.getGrade() << "\n";
+	out << in.getName();
+	return (out);
 }

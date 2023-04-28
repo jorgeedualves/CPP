@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 18:54:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/27 18:51:15 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:46:20 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ class Bureaucrat
 
 };
 
-std::ostream &operator<<(std::ostream &out, Bureaucrat &in);
-
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &in);
 
 #endif
