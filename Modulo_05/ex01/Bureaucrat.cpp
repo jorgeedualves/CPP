@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:57:25 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 14:23:33 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:28:34 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 Bureaucrat::Bureaucrat(void) : _name(""), _grade(0)
 {
-    std::cout << "Constructor called\n";
+    std::cout << "[Bureaucrat::] Constructor called\n";
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _grade(grade)
 {
-    std::cout << "Constructor Parametric called\n";
+    std::cout << "[Bureaucrat::] Constructor Parametric called\n";
     if (this->_grade < 1)
         throw GradeTooHighException();
     if (this->_grade > 150)
@@ -28,7 +28,7 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
 {
-    std::cout << "Copy Constructor called\n";
+    std::cout << "\n[Bureaucrat::] Copy Constructor called\n";
     *this = src;
     if (src.getGrade() < 1)
         throw GradeTooHighException();
@@ -38,13 +38,13 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat(void)
 {
-    std::cout << "Destructor called\n\n";
+    std::cout << "[Bureaucrat::] Destructor called\n";
     return;
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-    std::cout << "assignment operator called\n";
+    std::cout << "[Bureaucrat::] assignment operator called\n";
     this->_grade = rhs.getGrade();
     return(*this);
 }
@@ -75,14 +75,28 @@ void Bureaucrat::decrementGrade(void)
         this->_grade++;
 }
 
+void Bureaucrat::signForm(const Form &fm) const
+{
+    try
+    {
+        (*const_cast<Form*>(&fm)).beSigned(*this);
+        std::cout << this->getName() << " signed " << fm.getName() << "\n";
+    }
+    catch(const std::exception& exc)
+    {
+        std::cout << this->getName() << " " << exc.what() << "\n";
+    }
+    
+}
+
 const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-    return("Bureaucrat Grade Invalid: to high\n");
+    return("[Bureaucrat::] Bureaucrat Grade Invalid: to high");
 }
 
 const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-    return("Bureaucrat Grade Invalid: to low\n");
+    return("[Bureaucrat::] Bureaucrat Grade Invalid: to low");
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &in)
