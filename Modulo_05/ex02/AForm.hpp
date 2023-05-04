@@ -13,6 +13,8 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
+#include <exception>
+#include <string>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -23,17 +25,17 @@ class AForm
         AForm(void);
         AForm(const std::string name, const int gradeSing, const int gradeExec);
         AForm(const AForm &src);
-        ~AForm(void);
+        virtual ~AForm(void);
 
         AForm &operator=(const AForm &rhs);
 
         const std::string &getName(void) const;
         bool getSigned(void) const;
-        int getGradeSign(void) const;
-        int getGradeExecute(void) const;
+        int getGradeToSign(void) const;
+        int getGradeToExecute(void) const;
 
         virtual const std::string &getTarget(void) const;
-        void AForm::setTarget(const std::string &Target);
+        void setTarget(const std::string &Target);
 
         void beSigned(const Bureaucrat &brct);
 
@@ -66,9 +68,9 @@ class AForm
 
     private:
         const std::string _name;
-        bool _signed;
-        const int _gradeSign;
-        const int _gradeExecute;
+        bool _isFormSigned;
+        const int _gradeToSign;
+        const int _gradeToExecute;
 };
 
 std::ostream& operator<<(std::ostream& out, const AForm& in);

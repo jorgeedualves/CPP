@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:14:39 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 20:18:35 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:45:09 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ class Form
 
     private:
         const std::string _name;
-        bool _signed;
-        const int _gradeSign;
-        const int _gradeExecute;
+        bool _isFormSigned;
+        const int _gradeToSign;
+        const int _gradeToExecute;
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& in);

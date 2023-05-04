@@ -6,39 +6,39 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:04:37 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/02 17:15:37 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:35:39 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm()
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm ("Shrubbery Creation Form\n ", 145, 137)
 {
-    std::cout << "[ShrubberyCreationFor::] Constructor called\n";
+    std::cout << "[ShrubberyCreationFor:: Constructor called]\n";
     return;
 }
     
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm ("Shrubbery Creation Form", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm ("Shrubbery Creation Form\n ", 145, 137)
 {
-    std::cout << "[ShrubberyCreationFor::] Constructor Parametric called\n";   
+    std::cout << "[ShrubberyCreationFor:: Constructor Parametric called]\n";   
     this->setTarget(target);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) :AForm(src)
 {
-    std::cout << "[ShrubberyCreationFor::] Copy Constructor called\n";
+    std::cout << "[ShrubberyCreationFor:: Copy Constructor called]\n";
     *this = src;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-    std::cout << "[ShrubberyCreationFor::] Destructor called\n";
+    std::cout << "[ShrubberyCreationFor:: Destructor called]\n";
     return;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
-    std::cout << "[ShrubberyCreationFor::] assignment operator called\n";
+    std::cout << "[ShrubberyCreationFor:: assignment operator called]\n";
     (void) rhs;
     return (*this);
 }
@@ -52,9 +52,9 @@ void ShrubberyCreationForm::execute(const Bureaucrat &exe) const
 {
     if(this->getSigned() == false)
         throw AForm::UnsignedFormException();
-    else if (exe.getGrade() > this->getGradeExecute())
+    else if (exe.getGrade() > this->getGradeToExecute())
         throw AForm::GradeTooHighException();
-    else if (exe.getGrade() <= this->getGradeExecute())
+    else if (exe.getGrade() <= this->getGradeToExecute())
     {
         std::string fileOutput(this->getTarget() + "_shrubbery");
         std::ofstream ofs(fileOutput.c_str());
@@ -62,8 +62,16 @@ void ShrubberyCreationForm::execute(const Bureaucrat &exe) const
         {
             throw AForm::FileOutuptException();
         }
-        TREE;
-        ofs << TREE;
+        //TREE;
+         std::string tree =
+        "       ###       \n"
+        "      #o###      \n"
+        "    #####o###    \n"
+        "   #o#\\#|#/##   \n"
+        "    ###\\|/#o#   \n"
+        "     # }|{  #    \n"
+        "       }|{       \n";
+        ofs << tree;
         ofs.close();
     }
 }

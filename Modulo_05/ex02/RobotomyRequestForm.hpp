@@ -13,20 +13,21 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
+#include <cstdlib>
 #include "AForm.hpp"
-
 class RobotomyRequestForm : public AForm
 {
-    RobotomyRequestForm(void);
-    explicit RobotomyRequestForm(const std::string target);
-    RobotomyRequestForm(const RobotomyRequestForm &src);
-    virtual ~RobotomyRequestForm(void);
+    public:
+        RobotomyRequestForm(void);
+        explicit RobotomyRequestForm(const std::string target);
+        RobotomyRequestForm(const RobotomyRequestForm &src);
+        virtual ~RobotomyRequestForm(void);
 
-    RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
+        RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
 
-    const std::string &getTarget(void) const;
+        const std::string &getTarget(void) const;
 
-    void execute(const Bureaucrat &executor) const;
+        void execute(const Bureaucrat &executor) const;
 };
 
 
