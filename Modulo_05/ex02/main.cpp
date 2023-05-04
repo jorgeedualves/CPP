@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 23:51:11 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/04 10:53:25 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:23:15 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,25 @@ int main(void) {
   std::cout << "\n";
 
   try {
-    b = new Bureaucrat("Bob", 1);            // Bureaucrat::               Constructor Parametric
-    f = new ShrubberyCreationForm("Bobbie"); // ShrubberyCreationFor::     Constructor Parametric
-    b->signForm(*f);                         // Bureaucrat::               signForm
-    std::cout << *f;                         // AForm::                    ostream& operator<<
-    b->executeForm(*f);                      // ShrubberyCreationForm::    Constructor Parametric
+    b = new Bureaucrat("Maria", 1);            
+    f = new ShrubberyCreationForm("Maria-tree"); 
+    b->signForm(*f);                        
+    std::cout << *f;                         
+    b->executeForm(*f);           
+    delete b;
+    delete f;
+  } catch (std::exception& e) {
+    std::cerr << e.what() << "\n";
+  }
+
+  std::cout << "****************************************\n";
+
+  try {
+    b = new Bureaucrat("Joao", 1);
+    f = new RobotomyRequestForm("RobJoao");
+    b->signForm(*f);
+    std::cout << *f;
+    b->executeForm(*f);
     delete b;
     delete f;
   } catch (std::exception& e) {
@@ -38,62 +52,48 @@ int main(void) {
 
   std::cout << "*******************\n";
 
-  // try {
-  //   b = new Bureaucrat("Tob", 1);
-  //   f = new RobotomyRequestForm("Tobbie");
-  //   b->signForm(*f);
-  //   std::cout << *f;
-  //   b->executeForm(*f);
-  //   delete b;
-  //   delete f;
-  // } catch (std::exception& e) {
-  //   std::cerr << e.what() << "\n";
-  // }
+  try {  //FALTANDO !!!
+    b = new Bureaucrat("Jose", 1);
+    f = new PresidentialPardonForm("Presid. Jose");
+    b->signForm(*f);
+    std::cout << *f;
+    b->executeForm(*f);
+    delete b;
+    delete f;
+  } catch (std::exception& e) {
+    std::cerr << e.what() << "\n";    
+  }
 
-  // std::cout << "*******************\n";
+  std::cout << "*******************\n";
 
-  // try {  //FALTANDO !!!
-  //   b = new Bureaucrat("Job", 1);
-  //   f = new PresidentialPardonForm("Jobbie");
-  //   b->signForm(*f);
-  //   std::cout << *f;
-  //   b->executeForm(*f);
-  //   delete b;
-  //   delete f;
-  // } catch (std::exception& e) {
-  //   std::cerr << e.what() << "\n";    
-  // }
+  try {
+    b = new Bureaucrat("Carlos", 150);
+    f = new PresidentialPardonForm("Presid.Carlos");
+    b->signForm(*f);
+    std::cout << *f;
+    b->executeForm(*f);
+    delete b;
+    delete f;
+  } catch (std::exception& e) {
+    std::cerr << e.what() << "\n";
+  }
 
-  // std::cout << "*******************\n";
+  std::cout << "*******************\n";
 
-  // try {
-  //   b = new Bureaucrat("Lob", 150);
-  //   f = new PresidentialPardonForm("Lobbie");
-  //   b->signForm(*f);
-  //   std::cout << *f;
-  //   b->executeForm(*f);
-  //   delete b;
-  //   delete f;
-  // } catch (std::exception& e) {
-  //   std::cerr << e.what() << "\n";
-  // }
+  try {
+    b = new Bureaucrat("Jorge", 10);
+    f = new PresidentialPardonForm("Jr");
+    std::cout << *b;
+    b->signForm(*f);
+    std::cout << *f;
+    b->executeForm(*f);
+    delete b;
+    delete f;
+  } catch (std::exception& e) {
+    std::cerr << e.what() << "\n";
+  }
 
-  // std::cout << "*******************\n";
-
-  // try {
-  //   b = new Bureaucrat("Jorge", 10);
-  //   f = new PresidentialPardonForm("Jr");
-  //   std::cout << *b;
-  //   b->signForm(*f);
-  //   std::cout << *f;
-  //   b->executeForm(*f);
-  //   delete b;
-  //   delete f;
-  // } catch (std::exception& e) {
-  //   std::cerr << e.what() << "\n";
-  // }
-
-  // std::cout << "\n";
+  std::cout << "\n";
 
   return (0);
 }

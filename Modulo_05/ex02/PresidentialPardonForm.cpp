@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 23:34:45 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/04 10:35:37 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:20:17 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ PresidentialPardonForm::PresidentialPardonForm(void) : AForm()
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
     : AForm("Presidential Pardon Form ", 25, 5)
 {
-    std::cout << "3 - [PresidentialPardonForm:: Constructor Parametric called]\n";
+    std::cout << "[PresidentialPardonForm:: Constructor Parametric called]\n";
     this->setTarget(target);
 }
 

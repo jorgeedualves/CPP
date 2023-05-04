@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:57:25 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/04 10:42:52 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:20:15 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Bureaucrat::Bureaucrat(void) : _name(""), _grade(0)
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _grade(grade)
 {
-    std::cout << "1 - [Bureaucrat:: Constructor Parametric called]\n";
+    std::cout << "[Bureaucrat:: Constructor Parametric called]\n";
     if (this->_grade < 1)
         throw GradeTooHighException();
     if (this->_grade > 150)

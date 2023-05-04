@@ -22,7 +22,7 @@ AForm::AForm(const std::string name, const int gradeSing, const int gradeExec) :
                                                                                _gradeToSign(gradeSing),
                                                                                _gradeToExecute(gradeExec)
 {
-    std::cout << "2 - [AForm:: Constructor Parametric called]\n";
+    std::cout << "[AForm:: Constructor Parametric called]\n";
     if (this->_gradeToSign < 1)
         throw GradeTooHighException();
     if (this->_gradeToSign > 150)

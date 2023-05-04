@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:04:37 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/04 11:04:37 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:16:05 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,4 @@ void ShrubberyCreationForm::execute(const Bureaucrat &exe) const
         ofs.close();
     }
 }
+
