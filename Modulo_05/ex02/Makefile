@@ -31,7 +31,7 @@ $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
 clean:
-					$(RM) $(OBJ_DIR)
+					$(RM) $(OBJ_DIR) *_shrubbery
 
 fclean:				clean
 					$(RM) $(NAME)

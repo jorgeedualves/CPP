@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:44 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/03 17:38:03 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 10:28:26 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robotomy Request Form", 
     return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("Robotomy Request Form", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target)
+    : AForm("Robotomy Request Form", 72, 45)
 {
     std::cout << "[RobotomyRequestForm:: Constructor Parametric called]\n";
     this->setTarget(target);

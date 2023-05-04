@@ -22,7 +22,7 @@ AForm::AForm(const std::string name, const int gradeSing, const int gradeExec) :
                                                                                _gradeToSign(gradeSing),
                                                                                _gradeToExecute(gradeExec)
 {
-    std::cout << "[AForm:: Constructor Parametric called]\n";
+    std::cout << "2 - [AForm:: Constructor Parametric called]\n";
     if (this->_gradeToSign < 1)
         throw GradeTooHighException();
     if (this->_gradeToSign > 150)
@@ -114,11 +114,12 @@ const char* AForm::UnsignedFormException::what(void) const throw()
 }
 
 std::ostream& operator<<(std::ostream& cout, const AForm& form)
-{   cout << "\n**Form information: **\n";
-    cout << "Form Name: " << form.getName() << "\n";
-    cout << "Is Signed: " << (form.getSigned() ? "yes" : "no") <<"\n";
-    cout << "Grade to sing: " << form.getGradeToSign() << "\n";
-    cout << "Gradeto execute:" << form.getGradeToExecute() << "\n";
+{   cout << "\n\t** Form Information: **\n";
+    cout << "Form Name:\t\t" << form.getName() << "\n";
+    cout << "Target:\t\t\t" << form.getTarget() << "\n";
+    cout << "Is Signed: \t\t" << (form.getSigned() ? "yes" : "no") <<"\n";
+    cout << "Grade to sing: \t\t" << form.getGradeToSign() << "\n";
+    cout << "Grade to execute:\t" << form.getGradeToExecute() << "\n\n";
 
 	return (cout);
 }
