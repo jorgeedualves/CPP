@@ -1,13 +1,13 @@
 NAME			=	form
 
-SOURCES_FILES	=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SOURCES_FILES	=	main.cpp Bureaucrat.cpp Intern.cpp AForm.cpp ShrubberyCreationForm.cpp
 SOURCES_FILES	+=	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 SOURCES_DIR		=	./
 
 OBJ_DIR			=	objects
 
-HEADERS			=	Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+HEADERS			=	Bureaucrat.hpp Intern.hpp AForm.hpp ShrubberyCreationForm.hpp
 HEADERS			+=	RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
@@ -15,7 +15,7 @@ SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g #-fsanitize=address
 
 RM				=	rm -rf
 

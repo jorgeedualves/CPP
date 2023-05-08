@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:51:26 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/23 22:11:54 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:43:43 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class HumanB{
 
     private:
         std::string _name;
-        Weapon *_weapon;
+        Weapon *_typen;
     public:
         explicit HumanB(std::string);
         ~HumanB() {}

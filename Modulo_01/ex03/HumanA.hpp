@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:47:14 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/23 20:56:06 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:43:43 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class HumanA {
 
     private:
          std::string _name;
-         Weapon &_weapon;
+         Weapon &_typen;
     public:
         HumanA(std::string, Weapon &weapon);
         ~HumanA() {}

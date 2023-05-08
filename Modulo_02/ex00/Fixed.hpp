@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:30:26 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/13 15:30:40 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:52:07 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ private:
     int _rawBits;
     static int const _fractionalBits;
 };
-
-std::ostream &operator<<(std::ostream &o, Fixed const &i);
 
 #endif

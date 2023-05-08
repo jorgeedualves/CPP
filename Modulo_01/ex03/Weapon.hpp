@@ -6,7 +6,7 @@
 
 class Weapon{
     private:
-        std::string _weapon;
+        std::string _typen;
 
     public:
         explicit Weapon(std::string);

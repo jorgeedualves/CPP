@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:39:48 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/23 20:54:30 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:43:43 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 Weapon::Weapon(std::string name)
 {
-    _weapon = name;
+    _typen = name;
     return;
 }
 
 const std::string &Weapon::getType()
 { 
-    return this->_weapon;
+    return this->_typen;
 }
     
 void Weapon::setType(std::string type)
 { 
-    this->_weapon = type;
+    this->_typen = type;
 }
