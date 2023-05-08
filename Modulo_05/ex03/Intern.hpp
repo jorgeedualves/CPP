@@ -5,35 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 11:44:06 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/05 19:34:56 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/08 12:40:55 by joeduard          #+#    #+#             */
+/*   Updated: 2023/05/08 13:32:32 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERN_HPP
-#define INTERN_HPP
+#define INTER_HPP
 
+#include <exception>
+#include <string>
 #include "AForm.hpp"
-#include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-class Intern
-{
+class Intern{
     public:
         Intern(void);
         Intern(const Intern&);
-        virtual ~Intern(void);
-        
-        Intern &operator=(const Intern& rhs);
+        ~Intern(void);
 
-        AForm* makeForm(const std::string& FormName, const std::string& target)const;
-    private:
-        AForm  *_forms[3];
+        Intern& operator=(const Intern&);
+
+        AForm* shrubberyCreationForm(const std::string target) const;
+        AForm* robotomyRequestForm(const std::string target) const;
+        AForm* presidentialPardonForm(const std::string target) const;
+     
+        AForm* makeForm(const std::string name, const std::string target);
 };
 
 #endif
-
-
-

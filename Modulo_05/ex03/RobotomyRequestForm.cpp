@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:53:44 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/05 22:43:17 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 10:28:26 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,57 +15,56 @@
 RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robotomy Request Form", 72, 45)
 {
 	std::cout << "[RobotomyRequestForm::] Constructor called\n";
+    return;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target)
-    : AForm("Robotomy Request Form", 72, 45), _target(target)
+    : AForm("Robotomy Request Form", 72, 45)
 {
     std::cout << "[RobotomyRequestForm:: Constructor Parametric called]\n";
+    this->setTarget(target);
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
-    : AForm(src), _target(src._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(src)
 {
     std::cout << "[RobotomyRequestForm:: Copy Constructor called]\n";
+    *this = src;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
     std::cout << "[RobotomyRequestForm:: Destructor called]\n";
+    return;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
-    AForm   *temp1 = this;
-    AForm   *temp2 = const_cast<RobotomyRequestForm*>(&rhs);
-
-    *temp1 = *temp2;
-    this->_target = rhs._target;
+    (void) rhs;
     return (*this);
 }
 
-// const std::string &RobotomyRequestForm::getTarget(void) const
-// {
-//     return (this->_target);
-// }
+const std::string &RobotomyRequestForm::getTarget(void) const
+{
+    return (this->_target);
+}
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
-    if (!this->getSigned())
-        throw AForm::GradeTooLowException();
-    if (executor.getGrade() > this->getGradeToExecute())
-        throw AForm::GradeTooLowException();
-    std::cout << executor.getName() << " executed " << this->getName() << "\n";
-    srand(time(NULL));
-    std::cout << "TrUtRuTrU\n";
-    if (rand() & 1)
-        std::cout << _target << " has been robotomized successfully\n";
-    else
-        std::cout << _target << " failed to be robotomized\n";    
-}
+    unsigned int seed;
+    int randNum = rand_r(&seed) % (10);
 
-
-AForm* RobotomyRequestForm::clone(const std::string &target) const
-{
-    return(new RobotomyRequestForm(target));
+    if (this->getSigned() == false)
+        throw AForm::UnsignedFormException();
+    else if (executor.getGrade() > this->getGradeToExecute())
+        throw AForm::GradeTooHighException();
+    else if (executor.getGrade() <= this->getGradeToExecute() && randNum < 5)
+    {
+        std::cout << "zzzzzzzz\n";
+        std::cout << this->getTarget() << " has been robotomized sucessfully\n";
+    }
+    else if(executor.getGrade() <= this->getGradeToExecute() && randNum >= 5)
+    {
+        std::cout << "zzzzzzzz\n";
+        std::cout << this->getTarget() << " failed to be robotomized\n";
+    }
 }

@@ -20,17 +20,15 @@ class RobotomyRequestForm : public AForm
     public:
         RobotomyRequestForm(void);
         explicit RobotomyRequestForm(const std::string target);
-        RobotomyRequestForm(const RobotomyRequestForm&);
+        RobotomyRequestForm(const RobotomyRequestForm &src);
         virtual ~RobotomyRequestForm(void);
 
-        RobotomyRequestForm &operator=(const RobotomyRequestForm&);
+        RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
 
         const std::string &getTarget(void) const;
 
         void execute(const Bureaucrat &executor) const;
-        AForm* clone(const std::string& target) const;
-
-    private:
-        std::string      _target;
 };
+
+
 #endif

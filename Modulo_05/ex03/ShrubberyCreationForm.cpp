@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:04:37 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/05 22:59:43 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:16:05 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm ("Shrubbery Creation 
     return;
 }
     
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
-: AForm ("Shrubbery Creation Form\n ", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm ("Shrubbery Creation Form\n ", 145, 137)
 {
-    std::cout << "[ShrubberyCreationFor:: Constructor Parametric called]\n";
+    std::cout << "[ShrubberyCreationFor:: Constructor Parametric called]\n";   
+    this->setTarget(target);
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src)
-: AForm(src), _target(src._target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) :AForm(src)
 {
     std::cout << "[ShrubberyCreationFor:: Copy Constructor called]\n";
+    *this = src;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
@@ -39,37 +39,33 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
     std::cout << "[ShrubberyCreationFor:: assignment operator called]\n";
-    AForm   *tmp1 = this;
-    AForm   *tmp2 = const_cast<ShrubberyCreationForm*>(&rhs);
-
-    *tmp1 = *tmp2;
-    this->_target = rhs._target; 
+    (void) rhs;
     return (*this);
 }
 
-// const std::string &ShrubberyCreationForm::getTarget(void) const
-// {
-//     return (this->_target);          
-// }
-
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
+const std::string &ShrubberyCreationForm::getTarget(void) const
 {
-    if (!this->getSigned())
-        throw AForm::GradeTooLowException();
-    if (executor.getGrade() > this->getGradeToExecute())
-        throw AForm::GradeTooLowException();
-   
-    std::string fileOutput(_target + "_shrubbery");
-    
-    std::ofstream ofs(fileOutput.c_str());
-    if(ofs.fail())
+    return (this->_target);          
+}
+
+void ShrubberyCreationForm::execute(const Bureaucrat &exe) const
+{
+    if(this->getSigned() == false)
+        throw AForm::UnsignedFormException();
+    else if (exe.getGrade() > this->getGradeToExecute())
+        throw AForm::GradeTooHighException();
+    else if (exe.getGrade() <= this->getGradeToExecute())
     {
-        throw AForm::FileOutuptException();
-    }
-    std::string tree =
-        "       *      \n"
+        std::string fileOutput(this->getTarget() + "_shrubbery");
+        std::ofstream ofs(fileOutput.c_str());
+        if(ofs.fail())
+        {
+            throw AForm::FileOutuptException();
+        }
+         std::string tree =
+        "       *       \n"
         "      *o*     \n"
-        "     *o*o*    \n"
+        "     *o*o*     \n"
         "    *o***o*   \n"
         "   *o*****o*  \n"
         "  *o*******o* \n"
@@ -77,10 +73,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         "     ======   \n"; 
         ofs << tree;
         ofs.close();
-}
-
-AForm *ShrubberyCreationForm::clone(const std::string &target) const
-{
-    return (new ShrubberyCreationForm(target));
+    }
 }
 
