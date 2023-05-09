@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:40:55 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/08 13:32:32 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:27:52 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class Intern{
         AForm* shrubberyCreationForm(const std::string target) const;
         AForm* robotomyRequestForm(const std::string target) const;
         AForm* presidentialPardonForm(const std::string target) const;
+        AForm* invalidForm(const std::string target) const;
+
      
         AForm* makeForm(const std::string name, const std::string target);
 };

@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:39:24 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/08 13:50:23 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:29:12 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int main(void) {
   std::cout << "\n";
 
   try {
-    b = new Bureaucrat();
-    // b = new Bureaucrat("Bob", 1);
+    
+    b = new Bureaucrat("Bob", 1);
     f = i.makeForm("shrubbery creation", "Bobbie");
     b->signForm(*f);
     std::cout << *f;
@@ -55,7 +55,7 @@ int main(void) {
 
   try {
     b = new Bureaucrat("Job", 1);
-    f = i.makeForm("presidential pardon", "Jobbie");
+    f = i.makeForm("robotomy request", "Jobbie");
     b->signForm(*f);
     std::cout << *f;
     b->executeForm(*f);

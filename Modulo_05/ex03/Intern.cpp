@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:47:44 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/08 13:42:07 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:28:21 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,27 @@ AForm* Intern::presidentialPardonForm(const std::string target) const
     return(new PresidentialPardonForm(target));
 }
 
-AForm* Intern::makeForm(const std::string name, const std::string target)
-{   
-    std::string formType[3] = {"shrubberyCreationForm",
-                               "robotomyRequestForm",    
-                               "presidentialPardonForm"};
-    
-    AForm* (Intern::*f[3])(const std::string) const = {
-       &Intern::shrubberyCreationForm,
-       &Intern::robotomyRequestForm,
-       &Intern::presidentialPardonForm};
+AForm* Intern::invalidForm(const std::string target) const {
+  (void)target;
+  return (NULL);
+}
 
-    for(int i = 0; i < 2; i++)
-    {
-        if(!formType[i].compare(name))
-            return ((this->*f[i])(target));
+
+AForm* Intern::makeForm(const std::string name, const std::string target) {
+  std::string formType[4] = {"shrubbery creation",
+                             "robotomy request",
+                             "presidential pardon",
+                             "invalid form"};
+  AForm* (Intern::*f[4])(const std::string) const = {
+      &Intern::shrubberyCreationForm,
+      &Intern::robotomyRequestForm,
+      &Intern::presidentialPardonForm,
+      &Intern::invalidForm};
+
+  for (int i = 0; i < 3; i++) {
+    if (!formType[i].compare(name)) {
+      return ((this->*f[i])(target));
     }
-    return((this->*f[3])(target)); 
+  }
+  return ((this->*f[4])(target));
 }

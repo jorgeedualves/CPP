@@ -12,31 +12,32 @@
 
 #include "AForm.hpp"
 
- AForm::AForm(void) : _name(""), _isFormSigned(false), _gradeToSign(0), _gradeToExecute(0) 
+ AForm::AForm(void)
+ : _target(""), _name(""), _isFormSigned(false), _gradeToSign(0), _gradeToExecute(0) 
  {
     std::cout << "[AForm:: Constructor called]\n";
     return;
  }
 
-AForm::AForm(const std::string name, const int gradeSing, const int gradeExec) : _name(name), _isFormSigned(false),
-                                                                               _gradeToSign(gradeSing),
-                                                                               _gradeToExecute(gradeExec)
+AForm::AForm(const std::string name, const int gradeSing, const int gradeExec)
+: _target(""), _name(name), _isFormSigned(false),_gradeToSign(gradeSing), _gradeToExecute(gradeExec)
 {
     std::cout << "[AForm:: Constructor Parametric called]\n";
-    if (this->_gradeToSign < 1)
+    if (this->_gradeToSign < 1 || this->_gradeToExecute < 1)
         throw GradeTooHighException();
-    if (this->_gradeToSign > 150)
+    if (this->_gradeToSign > 150 || this->_gradeToExecute >150)
         throw GradeTooLowException();
 }
 
-AForm::AForm(const AForm &src) :_name(""), _isFormSigned(false), _gradeToSign(0), _gradeToExecute(0)
+AForm::AForm(const AForm &src)
+: _target(""), _name(""), _isFormSigned(false), _gradeToSign(0), _gradeToExecute(0)
 {
     std::cout << "[AForm:: Copy Constructor called]\n";
-    *this = src;
     if (src.getGradeToSign() < 1)
         throw GradeTooHighException();
     if (src.getGradeToSign() > 150)
         throw GradeTooLowException();
+    *this = src;
 }
 
 AForm::~AForm(void)
@@ -47,11 +48,14 @@ AForm::~AForm(void)
 
 AForm &AForm::operator=(const AForm &rhs)
 {
-    std::cout << "[AForm:: assignment operator called]\n";
-    const_cast<std::string&>(this->_name) = rhs.getName();
-    this->_isFormSigned = rhs.getGradeToSign();
-    const_cast<int&>(this->_gradeToSign) = rhs.getGradeToSign();
-    const_cast<int&>(this->_gradeToExecute) = rhs.getGradeToExecute(); 
+    if(this != &rhs)
+    {
+        std::cout << "[AForm:: assignment operator called]\n";
+        const_cast<std::string&>(this->_name) = rhs.getName();
+        this->_isFormSigned = rhs.getGradeToSign();
+        const_cast<int&>(this->_gradeToSign) = rhs.getGradeToSign();
+        const_cast<int&>(this->_gradeToExecute) = rhs.getGradeToExecute(); 
+    }
     return(*this);
 }
 
@@ -120,6 +124,5 @@ std::ostream& operator<<(std::ostream& cout, const AForm& form)
     cout << "Is Signed: \t\t" << (form.getSigned() ? "yes" : "no") <<"\n";
     cout << "Grade to sing: \t\t" << form.getGradeToSign() << "\n";
     cout << "Grade to execute:\t" << form.getGradeToExecute() << "\n\n";
-
 	return (cout);
 }
