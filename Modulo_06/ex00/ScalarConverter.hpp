@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 22:58:51 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/09 21:41:31 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:53:59 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ class ScalarConverter
 
         std::string getInput(void) const;
         double getRaw(void) const;
+
+        std::string castingChar(void);
+        std::string castingInt(void);
+        std::string castingfloat(void);
+        std::string castingDouble(void);
 
     private:
         const std::string _input;

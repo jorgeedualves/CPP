@@ -28,9 +28,6 @@ $(NAME):			$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 $(OBJ_DIR):
 					mkdir -p $(OBJ_DIR)
 
-runv:				all
-					valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./scalarConverte
-
 clean:
 					$(RM) $(OBJ_DIR)
 
