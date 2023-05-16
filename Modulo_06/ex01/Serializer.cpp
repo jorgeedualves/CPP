@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:09:31 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/11 12:52:09 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:02:25 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ Data *Serializer::deserialize(uintptr_t raw )
 
 std::ostream &operator<<( std::ostream &cout, const Data &data)
 {
-  cout << "Largura: " << data.lenght << "\nLargura: " << data.width << "\n";
+  cout << "Altura: " << data.lenght << "\nLargura: " << data.width << "\n";
 
   return (cout);
 }
