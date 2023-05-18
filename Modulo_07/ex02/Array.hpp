@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:04:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/17 13:07:05 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:23:18 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ template <typename T>
 class Array
 {
     public:
-        Array<T>(void): _size(0), _ptr(NULL)
+        Array<T>(void) : _size(0), _ptr(NULL)
         {
             return;
         }
@@ -48,13 +48,16 @@ class Array
 
         Array<T>& operator=(const Array<T>& rhs)
         {
-            if (this->_size)
-                delete this->_ptr;
-            this->_size = rhs.size();
-            if (this->_size)
-                this->_ptr = new T[this->_size];
-            for (size_t i = 0; i < this->size(); i++)
-                this->_ptr[i] = rhs[i];
+            if (this != &rhs)
+            {
+                if (this->_size)
+                    delete this->_ptr;
+                this->_size = rhs.size();
+                if (this->_size)
+                    this->_ptr = new T[this->_size];
+                for (size_t i = 0; i < this->size(); i++)
+                    this->_ptr[i] = rhs[i];
+            }
             return (*this);
         }
 
@@ -78,8 +81,8 @@ class Array
         }
 
     private:
-    size_t _size;
-    T* _ptr;
+        size_t _size;
+        T* _ptr;
 };
 
 template <typename T>
@@ -94,6 +97,5 @@ std::ostream& operator<<(std::ostream& cout, const Array<T>& cin)
     std::cout << "\n";
     return (cout);
 }
-
 
 #endif
