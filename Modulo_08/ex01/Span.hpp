@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:13:55 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/18 18:51:55 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:33:56 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Span
 		Span(const Span& src);
 		~Span(void);
 
-		Span& operator==(const Span& rhs);
+		Span& operator=(const Span& rhs);
 
 		const std::vector<int>& getContainer(void) const;
 		size_t getMaximum(void) const;
