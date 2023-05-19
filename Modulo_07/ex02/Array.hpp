@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:04:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/18 16:23:18 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:23:26 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Array
             if (this != &rhs)
             {
                 if (this->_size)
-                    delete this->_ptr;
+                    delete[] this->_ptr;
                 this->_size = rhs.size();
                 if (this->_size)
                     this->_ptr = new T[this->_size];
