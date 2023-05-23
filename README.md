@@ -1,9 +1,9 @@
 # CPP
 C++ é uma linguagem de programação compilada multi-paradigma e de uso geral.O objetivo desses módulos é apresentá-lo à Programação Orientada a Objetos.
-Este será o ponto de partida de sua jornada C++. Muitos idiomas são recomendados para aprender
-OOP. Decidimos escolher C++, pois é derivado do seu velho amigo C.
-Por se tratar de uma linguagem complexa e para manter as coisas simples, seu código estará em
-conformidade com o padrão C++98
+Este será o ponto de partida de sua jornada C++. Muitos idiomas são recomendados para aprender OOP. Decidimos escolher C++, pois é derivado do seu velho amigo C.
+Por se tratar de uma linguagem complexa e para manter as coisas simples, seu código estará em conformidade com o padrão C++98
+
+O padrão C++98, também conhecido como C++98 ISO, é a primeira padronização oficial da linguagem C++. Ele foi publicado em 1998 e introduziu muitas das características básicas da linguagem, como classes, herança, sobrecarga de funções e polimorfismo. O C++98 é conhecido por ser um padrão muito estável e confiável, e muitas empresas ainda o usam para desenvolver software. No entanto, o C++98 tem algumas limitações em relação a padrões mais recentes, como C++11, C++14 e C++17, que adicionaram muitos recursos novos e poderosos à linguagem.
 
 # Descrições:
 
