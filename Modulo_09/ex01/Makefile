@@ -13,7 +13,7 @@ OBJECTS			=	$(SOURCES:$(SOURCE_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 NAME			=	RPN
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -g #-fsanitize=address
 
 RM				=	rm -rf
 
@@ -24,6 +24,8 @@ all:				$(NAME)
 
 RESET			= 	\033[0m
 GREEN 			= 	\033[38;5;46m
+RED				=	\033[1;31m
+
 
 $(NAME):	$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 			$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
@@ -36,15 +38,15 @@ run:
 			./$(NAME)
 
 runv:		all
-			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./btc
+			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./$(NAME) "1 1 +"
 
 clean:
 			@$(RM) $(OBJ_DIR)
-			@echo "$(GREEN)Object files removed $(RESET)"
+			@echo "$(RED)Object files removed $(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)	
-			@echo "$(GREEN)Executable removed $(RESET)"
+			@echo "$(RED)Executable removed $(RESET)"
 
 re:			fclean all
 

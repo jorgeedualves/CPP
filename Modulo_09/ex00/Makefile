@@ -37,7 +37,7 @@ run:
 			./$(NAME)
 
 runv:		all
-			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./btc
+			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./$(NAME) input.txt
 
 clean:
 			@$(RM) $(OBJ_DIR)
