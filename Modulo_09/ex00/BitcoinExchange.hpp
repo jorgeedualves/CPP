@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:59:38 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/23 22:14:13 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:27:41 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,5 @@ std::string pastDate(std::string date);
 bool        validDate(const std::string &date);
 
 #endif
+
+//teste
