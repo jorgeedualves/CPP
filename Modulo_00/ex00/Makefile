@@ -4,7 +4,7 @@ SOURCE			= megaphone.cpp
 
 OBJECT			= $(SOURCE:.cpp=.o)
 
-COMPILE			= clang++
+COMPILE			= c++
 
 FLAGS			= -Wall -Wextra -Werror -std=c++98
 

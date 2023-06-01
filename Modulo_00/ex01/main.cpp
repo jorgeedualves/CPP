@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:29:10 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/07 16:12:58 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:41:16 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,50 @@
 
 bool fieldValidation(std::string input, std::string fieldName)
 {
-	for(std::string::iterator i = input.begin(); i != input.end(); ++i)
+	bool onlyNewline = true;
+    
+    for (std::string::iterator i = input.begin(); i != input.end(); ++i)
+    {
+        if (*i != '\n')
+        {
+            onlyNewline = false;
+            break;
+        }
+    }
+    if (onlyNewline)
+    {
+        std::cout << "Empty field not allowed: " << fieldName << "\n\n";    
+        return (false);
+    }
+	for (std::string::iterator i = input.begin(); i != input.end(); ++i)
 	{
 		if(!std::isalnum(*i))
 		{
 			std::cout << fieldName << " - Character not allowed: " << *i << std::endl;
-			return(false);
+			return (false);
 		}
 	}
-	return(true);
+	return (true);
 }
 
 bool phoneValidation(std::string input, std::string fieldName)
 {
-
-	for(std::string::iterator i = input.begin(); i != input.end(); ++i)
+	bool onlyNewline = true;
+    
+    for (std::string::iterator i = input.begin(); i != input.end(); ++i)
+    {
+        if (*i != '\n')
+        {
+            onlyNewline = false;
+            break;
+        }
+    }
+    if (onlyNewline)
+    {
+        std::cout << "Empty field not allowed: " << fieldName << "\n\n";    
+        return (false);
+    }
+	for (std::string::iterator i = input.begin(); i != input.end(); ++i)
 	{
 		if(!std::isdigit(*i))
 		{
@@ -37,7 +66,7 @@ bool phoneValidation(std::string input, std::string fieldName)
 			return(false);
 		}
 	}
-	return(true);
+	return (true);
 }
 
 void addContact(PhoneBook &objPhoneBook)
@@ -107,6 +136,11 @@ int main(void)
             searchContact(objPhoneBook);
         else if (option == "EXIT")
             break;
+		else if (std::cin.eof())
+		{
+         	std::cout << "\nCTRL + D not allowed | Invalid option\n" << std::endl;
+			break;
+		}           
         else
         	std::cout << "Invalid option" << std:: endl;
     }

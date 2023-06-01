@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:32:28 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/04 17:17:58 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:55:55 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void Harl::debug(void)
 {
     std::cout << "[ DEBUG ]\n" <<
     "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger."
-    " I really do!" << std::endl;
+    " I really do!\n";
 }
 
 void Harl::info(void)
 {
     std::cout << "[ INFO ]\n" <<
     "I cannot believe adding extra bacon costs more money. You didn't put"
-    " enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
+    " enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
 }
 
 void Harl::warning(void)
 {
     std::cout << "[ WARNING ]\n" <<
     "I think I deserve to have some extra bacon for free.\n" <<
-    "I've been coming for years whereas you started working here since last month." << std::endl;
+    "I've been coming for years whereas you started working here since last month.\n";
 }
 
 void Harl::error(void)
@@ -46,7 +46,7 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    std::string vtLevel[4]= {"debug", "info", "warning", "error"};
+    std::string vtLevel[4]= {"DEBUG", "INFO", "WARNING", "ERROR"};
     void (Harl::*ptFuncs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     size_t opt;
 
@@ -79,9 +79,8 @@ void Harl::complain(std::string level)
       break;
     }
     default:
-        std::cout << "[ Probably complaining about insignificant problems ]";
+        std::cout << "[ Probably complaining about insignificant problems ]\n";
         break;
     }
-
 	return;
 }
