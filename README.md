@@ -5,66 +5,22 @@ Por se tratar de uma linguagem complexa e para manter as coisas simples, seu có
 
 O padrão C++98, também conhecido como C++98 ISO, é a primeira padronização oficial da linguagem C++. Ele foi publicado em 1998 e introduziu muitas das características básicas da linguagem, como classes, herança, sobrecarga de funções e polimorfismo. O C++98 é conhecido por ser um padrão muito estável e confiável, e muitas empresas ainda o usam para desenvolver software. No entanto, o C++98 tem algumas limitações em relação a padrões mais recentes, como C++11, C++14 e C++17, que adicionaram muitos recursos novos e poderosos à linguagem.
 
-# Descrições:
+# Orientação ao Objeto:
 
-- **Standard Library** - A biblioteca padrão C++ fornece vários contêineres genéricos, funções para usar e manipular esses contêineres, objetos de função, strings e fluxos genéricos (incluindo I/O interativa e de arquivo), suporte para alguns recursos de linguagem e funções para tarefas comuns, como encontrar a raiz quadrada de um número.
-- **istream -** significa fluxo de entrada para obter entradas;
-- **ostream -** fluxo de saída para fornecer saídas;
-- **Stream(fluxo)** - É uma sequência de caracteres lidos ou gravado em um dispositivo de entrada e saída.
-- **iostream** - É uma biblioteca que faz parta da biblioteca padrão “Standard Library”Composta por istream e ostream; Há 4 objetos definidos por ela:
-    
-    1. **cin** - Objeto do tipo istream usado para entrada padrão (standard input);
-    2. **cout** - Significa Saída do Console. Objeto do tipo ostream de saída padrão (standard output);
-    3. **cerr** - Objeto do tipo ostream de erro padrão (standard error);
-    4. **clog** - Objeto do tipo ostream usado para informações gerais (general information);
-##
+A orientação a objetos em C++ é um paradigma de programação que permite organizar o código em torno de objetos, que são instâncias de classes. C++ é uma linguagem que suporta programação orientada a objetos e oferece recursos para definir classes, criar objetos, encapsular dados e implementar herança e polimorfismo.
 
-- **Namespace** - É uma região declarativa que fornece uma escopo para os identificadores dentro dela. os indetificadores são:
-    - Nomes de tipos, funções ou variáveis e etc. Para esses tipos de indenficadores, o namespace é uma região declarativa que fornecerá o escopo para isso.
-    Namespaces são usados para organizar o código em grupos lógicos e evitar colisões de nomes que podem ocorrer quando a base de código inclue várias bibliotecas.
-- **Operador de resolução do escopo ::** - É utilizado para identificar e remover ambiguidades de identificadores usados em escopos diferentes. Para mais informações sobre escopo.
+A orientação a objetos em C++ é baseada em alguns conceitos-chave:
 
-Tudo em C++ é associado a classes e objetos, juntamente com seus atributos e métodos.
+Classes: Uma classe é uma estrutura de dados que define o comportamento e as propriedades de um objeto. Ela contém membros, como variáveis de instância (atributos) e funções membro (métodos). As classes são usadas para criar objetos.
 
-- **Classe** - Uma classe é definida pelo utilizador tipo de dados que podemos utilizar no nosso programa, e funciona como um construtor de objeto, ou um "modelo" para a criação de objetos.
+Objetos: Um objeto é uma instância de uma classe. Ele contém seus próprios dados (atributos) e pode executar operações (métodos) definidos pela classe.
 
-- **Objeto** - É criado a partir de uma classe. Para criar um objeto basta especificar as nome da classe, seguido do nome do objeto. Pode-se criar vários objetos de uma classe. 
+Encapsulamento: O encapsulamento é o princípio de esconder os detalhes internos de uma classe e fornecer uma interface para interagir com ela. Isso permite proteger os dados internos da classe e controlar o acesso a eles por meio de modificadores de acesso, como public, private e protected.
 
-Em C++, existem três especificadores de acesso:
+Herança: A herança permite criar novas classes (classes derivadas) com base em classes existentes (classes base). A classe derivada herda os atributos e métodos da classe base e pode adicionar ou modificar seu comportamento. A herança permite reutilizar código e estabelecer relações hierárquicas entre classes.
 
-    public - membros são acessíveis de fora da classe
-    private - membros não pode ser acessado (ou visto) de fora da classe
-    protected - membros não podem ser acessados a partir de fora da sala de aula, no entanto, eles podem ser acessados em classes herdadas.
+Polimorfismo: O polimorfismo permite que objetos de diferentes classes sejam tratados de forma uniforme. Isso significa que um objeto pode assumir várias formas e responder de maneira diferente a chamadas de métodos com o mesmo nome. O polimorfismo é alcançado por meio de funções virtuais e classes abstratas.
 
-##
+Sobrecarga de operador: C++ permite sobrecarregar operadores existentes para que possam ser usados em objetos de classes definidas pelo usuário. Isso permite que operações comuns sejam realizadas de maneira intuitiva, como adicionar objetos, compará-los, etc.
 
-- **Sobrecarga de Operadores** - Permite que a linguagem seja estendida e que você possa fazer somas, multiplicações, conversões e várias outras operações entre os objetos que você criou.
-
-    - A linguagem C++ tem como um de seus objetivos fazer classes e objetos trabalharem de forma similar às variáveis e tipos primitivos (char, int, float, double, wchar_t e bool.)
-    
-    - Para sobrecarregar um operador utiliza-se uma forma especial de função, chamada de função operator:
-    
-      operator+() Sobrecarrega operador de soma;
-      
-      operator*() Sobrecarrega opetador de multipilicação;
-        
-    A sobrecarga permite:
-      Tratar classes como tipos primitivos;
-      Simplificar o uso de objetos dessas classes;
-    
-    A maior parte dos operadores podem ser sobrecarregados através de **métodos** ou **funções**
-   
-   **Restrições**
-   
-   - Usar um operador como método de uma classe
-        - obriga o operando esquerdo a ser um objeto
-   
-   - Os operadores não precisam ser métodos
-        - Mas pelo menos um dos operandos deve ser um objeto de uma classe definida pelo programador
-        
-   - Não é possivel:
-        - Alterar as regras de uso do operador
-            - Alterar a Precedência, número de argumetnos, etc. (operador + requer dois operandos)
-        - Criar operadores
-            - Só é possível sobrescrever operadores existentes. (operador @ não existe na linguagem C++)
-    
+Esses são apenas alguns dos conceitos básicos da orientação a objetos em C++. Ao aplicar esses conceitos, é possível criar programas mais organizados, modulares, reutilizáveis e fáceis de manter. A orientação a objetos é amplamente utilizada em C++ para desenvolver uma variedade de aplicativos, desde pequenos programas até sistemas complexos.
