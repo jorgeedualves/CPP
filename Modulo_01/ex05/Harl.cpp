@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:22:15 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/04 13:45:01 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/02 11:57:44 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    std::string vtLevel[4]= {"debug", "info", "warning", "error"};
+    std::string vtLevel[4]= {"DEBUG", "INFO", "WARNING", "ERROR"};
     void (Harl::*ptFuncs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
 
@@ -58,5 +58,6 @@ void Harl::complain(std::string level)
             return;
         } 
     }
+    std::cout << "No complains, I'm happy! :D\n";
 	return;
 }

@@ -1,8 +1,8 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string n)
+Zombie::Zombie(std::string name)
 {
-      _name = n;
+      _name = name;
 }
 
 void Zombie::announce(void)

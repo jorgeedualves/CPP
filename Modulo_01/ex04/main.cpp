@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:18:40 by joeduard          #+#    #+#             */
-/*   Updated: 2023/03/29 23:08:03 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:11:30 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ bool fileInValidation(std::ifstream &fileIn, char *file)
 		std::cerr << "Failed to open: " << file << std::endl;
 		return (false);
 	}
+	if (fileIn.peek() == std::ifstream::traits_type::eof())
+    {
+        std::cout << "The file is empty.\n";
+        return (false);
+    } 
 	return(true);
 }
 
@@ -36,15 +41,6 @@ bool fileOutValidation(std::ofstream &fileOut, char *file)
 	return (true);
 }
 
-/*
-    argc_1 = ./exe
-    argc_2 = argv[1] file a ser lido " Hello Jorge como vai"
-    argc_3 = argv[2] s1 com o texto para ser procurado    " Hello Jorge"
-    argc_4 = argv[3] s2 com o texto será substituir o s1  " Ola alexandre"
-
-    fileout = Ola alexandre como vai
-*/
-
 int main(int argc, char *argv[])
 {
     std::ifstream fileIn;  // Abrir o arquivo, procurar o s1 e trocar pelo s2 e salvar em file out
@@ -53,7 +49,7 @@ int main(int argc, char *argv[])
 
     if (argc != 4)
     {
-        std::cerr << "Invalid number of arguments" << std::endl;
+        std::cerr << "Invalid number of arguments\n";
         return (1);
     }
     else if (fileInValidation(fileIn, argv[1]) && fileOutValidation(fileOut, argv[1]))

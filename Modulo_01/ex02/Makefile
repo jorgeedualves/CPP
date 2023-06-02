@@ -12,7 +12,7 @@ OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 NAME			=	zombie
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g -fsanitize=address
 
 RM				=	rm -rf
 

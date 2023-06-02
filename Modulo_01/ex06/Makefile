@@ -13,7 +13,7 @@ SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g -fsanitize=address
 
 RM				=	rm -rf
 
