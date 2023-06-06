@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:11:08 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/05 21:35:18 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:09:51 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 ClapTrap::ClapTrap(void) : _name("ClapTrap"), _className("ClapTrap"), _hitPoint(10), _energyPoint(10), _attackDamage(0)
 {
-    std::cout << "ClapTrap Default constructor Called\n";
+    std::cout << "ClapTrap Default Constructor Called\n";
     return;
 }
 
 ClapTrap::ClapTrap(std::string const name) : _name(name), _className("ClapTrap"), _hitPoint(10), _energyPoint(10), _attackDamage(0)
 {
-    std::cout << "ClapTrap Parametric constructor Called\n";
+    std::cout << "ClapTrap Parametric Constructor Called\n";
     return;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &src)
 {
-    std::cout << " ClapTrap Copy constructor Called\n";
+    std::cout << " ClapTrap Copy Constructor Called\n";
     *this = src;
     return;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-    std::cout << "ClapTrap Destructor called\n";
+    std::cout << "ClapTrap Destructor Called\n";
     return;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
 {
-    std::cout << " ClapTrap Copy assignment operator called\n";
+    std::cout << " ClapTrap Copy Assignment Operator Called\n";
     const_cast<std::string &> (this->_name) = rhs.getName();
     this->_hitPoint = rhs.getHP();
     this->_energyPoint = rhs.getEP();
@@ -103,13 +103,13 @@ void ClapTrap::attack(const std::string& target)
     if (this->getHP() == 0)
     {
         std::cout << this->getClassName() << " " << this->getName()
-                  << " is dead!. He cannot not attack"
+                  << " is dead!. He cannot not attack "
                   << target << std::endl;
         return;
     }
     if (this->getEP() == 0)
     {
-        std::cout << "No energy remainig!"
+        std::cout << "No energy remainig! "
                   << this->getClassName() << " " << this->getName()
                   << " cannot attacks!" << target << std::endl;
         return;
@@ -117,7 +117,7 @@ void ClapTrap::attack(const std::string& target)
     std::cout << this->getClassName() << " " << this->getName()
               << " attacks " << target
               << " causing " << this->getAD() 
-              << "points of damage!" << std::endl;
+              << " points of damage!\n";
     this->_energyPoint--;   
 }
 
@@ -126,7 +126,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (this->getHP() == 0)
     {
         std::cout << this->getClassName() << " " << this->getName()
-                  << " is dead!. He cannot suffer damage" << std::endl;
+                  << " is dead!. He cannot suffer damage\n";
         return;
     }
     std::cout << this->getClassName() << " " << this->getName()
@@ -138,7 +138,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (this->getHP() <= 0)
     {
         std::cout << this->getClassName() << " " << this->getName()
-                  << " has died!" << std::endl;   
+                  << " has died!\n";   
     }  
 }
 
@@ -147,23 +147,20 @@ void ClapTrap::beRepaired(unsigned int amount)
     if (this->getHP() == 0)
     {
         std::cout << this->getClassName() << " " << this->getName()
-                  << " is dead!. He cannot be repaired" << std::endl;
+                  << " is dead!. He cannot be repaired!\n";
         return;
     }
     if (this->getEP() == 0)
     {
-        std::cout << "No energy remainig!"
+        std::cout << "No energy remainig! "
                   << this->getClassName() << " " << this->getName()
-                  << " cannot be repaired!" <<std::endl;
+                  << " cannot be repaired!\n";
         return;
     }
     std::cout << this->getClassName() << " " << this->getName()
               << " recovered " << amount
               << " points of hit points!\n";
-    if (this->_hitPoint + amount > 10)
-        this->_hitPoint = 10;
-    else
-        this->_hitPoint += amount;
+    this->_hitPoint += amount;
     this->_energyPoint--; 
 }
 

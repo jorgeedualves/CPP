@@ -1,4 +1,4 @@
-NAME			=	ClapTrap
+NAME			=	clapTrap
 
 SOURCES_FILES	=	ClapTrap.cpp main.cpp
 

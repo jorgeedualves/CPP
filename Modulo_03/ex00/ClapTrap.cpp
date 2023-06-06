@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:11:08 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/02 12:59:11 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:04:16 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void ClapTrap::attack(const std::string& target)
     if (this->getHP() == 0)
     {
         std::cout << "ClapTrap " << this->getName()
-                  << " is dead!. He cannot not attack"
+                  << " is dead! He cannot not attack "
                   << target << std::endl;
         return;
 
@@ -100,14 +100,14 @@ void ClapTrap::attack(const std::string& target)
     if (this->getEP() == 0)
     {
         std::cout << "No energy remainig!"
-                  << "ClapTrap " << this->getName()
-                  << " cannot attacks!" << target << std::endl;
+                  << " ClapTrap " << this->getName()
+                  << " cannot attacks " << target << std::endl;
         return;
     }
     std::cout << "ClapTrap " << this->getName()
               << " attacks " << target
               << " causing " << this->getAD() 
-              << "points of damage!\n";
+              << " points of damage!\n";
     this->_energyPoint--;
 }
 
@@ -116,7 +116,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (this->getHP() == 0)
     {
          std::cout << "ClapTrap " << this->getName()
-                  << " is dead!. He cannot suffer damage\n";
+                  << " is dead!. He cannot suffer damage!\n";
         return;
     }
     std::cout << "ClapTrap "
@@ -139,14 +139,14 @@ void ClapTrap::beRepaired(unsigned int amount)
     if(this->getHP() == 0)
     {
          std::cout << "ClapTrap " << this->getName()
-                  << " is dead!. He cannot be repaired\n";
+                  << " is dead! He cannot be repaired!\n";
         return;
 
     }
     if(this->getEP() == 0)
     {
          std::cout << "No energy remainig!"
-                  << "ClapTrap " << this->getName()
+                  << " ClapTrap " << this->getName()
                   << " cannot be repaired!\n";
         return;
 
@@ -154,10 +154,8 @@ void ClapTrap::beRepaired(unsigned int amount)
     std::cout << "ClapTrap " << this->getName()
               << " recovered " << amount
               << " points of hit points!\n";
-    if (this->_hitPoint + amount > 10)
-        this->_hitPoint = 10;
-    else
-        this->_hitPoint += amount;
+   
+    this->_hitPoint += amount;
     this->_energyPoint--;
 }
 

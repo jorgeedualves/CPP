@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:29:47 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/05 21:37:38 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:06:59 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
  ScavTrap::ScavTrap(void) : ClapTrap()
 {
-    std::cout << "ScavTrap defaut contructor called\n";
+    std::cout << "ScavTrap Defaut Contructor Called\n";
     this->setName("ScavTrap");
     this->setClassName("ScavTrap");
     this->setHP(100);
@@ -25,7 +25,7 @@
 
 ScavTrap::ScavTrap(std::string const name) : ClapTrap(name)
 {
-    std::cout << "ScavTrap parametric contructor called\n";
+    std::cout << "ScavTrap Parametric Contructor Called\n";
     this->setClassName("ScavTrap");
     this->setHP(100);
     this->setEP(50);
@@ -35,20 +35,20 @@ ScavTrap::ScavTrap(std::string const name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap()
 {
-      std::cout << "ScavTrap copy contructor called\n";
+      std::cout << "ScavTrap Copy Contructor Called\n";
       *this = src;
       return;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-    std::cout << "ScavTrap destructor called\n";
+    std::cout << "ScavTrap Destructor Called\n";
     return;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &rhs)
 {
-	std::cout << "ScavTrap copy assigment called\n";
+	std::cout << "ScavTrap Copy Assigment Called\n";
     const_cast<std::string &> (this->_name) = rhs.getName();
     this->_hitPoint = rhs.getHP();
     this->_energyPoint = rhs.getEP();
@@ -76,7 +76,7 @@ void ScavTrap::attack(const std::string& target)
     std::cout << this->getClassName() << " " << this->getName()
               << " attacks " << target
               << " causing " << this->getAD() 
-              << "points of damage!" << std::endl;
+              << " points of damage!" << std::endl;
     this->_energyPoint--;   
 }
 
