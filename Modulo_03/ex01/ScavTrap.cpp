@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:29:47 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/02 13:03:14 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:37:38 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 {
     std::cout << "ScavTrap defaut contructor called\n";
     this->setName("ScavTrap");
+    this->setClassName("ScavTrap");
     this->setHP(100);
     this->setEP(50);
     this->setAD(20);
@@ -25,6 +26,7 @@
 ScavTrap::ScavTrap(std::string const name) : ClapTrap(name)
 {
     std::cout << "ScavTrap parametric contructor called\n";
+    this->setClassName("ScavTrap");
     this->setHP(100);
     this->setEP(50);
     this->setAD(20);
@@ -55,28 +57,27 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &rhs)
 
 }
 
-void ScavTrap::attack(const std::string &target)
+void ScavTrap::attack(const std::string& target)
 {
     if (this->getHP() == 0)
     {
-        std::cout << this->getName()
-                  << " is dead!. He cannot not attack "
+        std::cout << this->getClassName() << " " << this->getName()
+                  << " is dead!. He cannot not attack"
                   << target << std::endl;
         return;
-
     }
     if (this->getEP() == 0)
     {
-        std::cout << "No energy remainig! "
-                  << this->getName()
+        std::cout << "No energy remainig!"
+                  << this->getClassName() << " " << this->getName()
                   << " cannot attacks!" << target << std::endl;
         return;
     }
-    std::cout << this->getName()
+    std::cout << this->getClassName() << " " << this->getName()
               << " attacks " << target
               << " causing " << this->getAD() 
-              << " points of damage!\n";
-    this->_energyPoint--;
+              << "points of damage!" << std::endl;
+    this->_energyPoint--;   
 }
 
 void ScavTrap::guardGate(void) const

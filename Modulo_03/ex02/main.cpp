@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 13:29:56 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 16:13:01 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:47:57 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(void)
 
   fragTrap.attack(scavTrap.getName());
   scavTrap.takeDamage(fragTrap.getAD());
-  fragTrap.highFiveGuys();
+  fragTrap.highFivesGuys();
   fragTrap.beRepaired(40);
   std::cout << "\n";
 

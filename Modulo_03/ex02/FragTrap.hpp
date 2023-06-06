@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fragtrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:16:06 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 16:02:53 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:47:41 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ class FragTrap: public ClapTrap
 
         FragTrap &operator=(FragTrap const &rhs);
 
-        void highFiveGuys(void);
+        void highFivesGuys(void);
 };
 #endif

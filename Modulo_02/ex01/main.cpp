@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:03:20 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/13 16:11:52 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:14:35 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,23 @@ int main( void )
     Fixed const c( 42.42f );
     Fixed const d( b );
     a = Fixed( 1234.4321f );
+
+    std::cout << "\n** FIXED **\n";
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
     std::cout << "d is " << d << std::endl;
+    
+    std::cout << "\n** INT **\n";
     std::cout << "a is " << a.toInt() << " as integer" << std::endl;
     std::cout << "b is " << b.toInt() << " as integer" << std::endl;
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+    
+    std::cout << "\n** FLOAT **\n";
+    std::cout << "a is " << a.toFloat() << " \tas float" << std::endl;
+    std::cout << "b is " << b.toFloat() << " \tas float" << std::endl;
+    std::cout << "c is " << c.toFloat() << " \tas float" << std::endl;
+    std::cout << "d is " << d.toFloat() << " \tas float\n" << std::endl;
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:03:28 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/22 11:41:53 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:21:51 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ valor inicial padrão e é chamado automaticamente pelo compilador quando um obj
  */
 Fixed::Fixed(void) : _rawBits(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
 	return;
 }
 
@@ -47,7 +46,6 @@ ou quando um objeto é retornado de uma função.
  */
 Fixed::Fixed(Fixed const &src) 
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return;
 }
@@ -67,9 +65,7 @@ Em resumo, esse construtor permite que um objeto Fixed seja inicializado a parti
  */
 Fixed::Fixed(int const n)
 {
-    std::cout << "Int constructor called" << std::endl;
     this->_rawBits = n << _fractionalBits; // retorna o resulta do valor da casa decimal do parametro
-	std::cout << "-----------rawBits:-------->>>>" << this->_rawBits << std::endl;
 }
 
 /**
@@ -101,9 +97,7 @@ tipos de números ou em cálculos que requerem precisão fixa.
  */
 Fixed::Fixed(float const f)
 {
-    std::cout << "Float constructor called" << std::endl;
     this->_rawBits = static_cast<int>(roundf(f *(1 << _fractionalBits))); 
-	std::cout << "-----------rawBits no float:-------->>>>" << this->_rawBits << std::endl;
 }
 
 /**
@@ -124,7 +118,6 @@ C++ e ajuda a evitar vazamentos de memória e outros problemas relacionados ao g
  */
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
@@ -150,7 +143,6 @@ classe Fixed sejam copiados e atribuídos uns aos outros.
  */
 Fixed &Fixed::operator=(Fixed const &src)
 {
-	std::cout << "Copy assignment operator= called" << std::endl;
 	this->setRawBits(src.getRawBits());
 	return (*this);
 }
@@ -158,64 +150,54 @@ Fixed &Fixed::operator=(Fixed const &src)
 
 bool Fixed::operator>(Fixed const &rhs) const // rhs = "right-hand side" (lado direito).
 {
-	std::cout << "operator> called" << std::endl;
 	return (this->_rawBits > rhs.getRawBits());
 }
 
 bool Fixed::operator<(Fixed const &rhs) const
 {
-	std::cout << "operator< called" << std::endl;
 	return (this->_rawBits < rhs.getRawBits());
 }
 
 bool Fixed::operator>=(Fixed const &rhs) const
 {
-	std::cout << "operator>= called" << std::endl;
 	return (this->_rawBits >= rhs.getRawBits());
 }
 
 bool Fixed::operator<=(Fixed const &rhs) const
 {
-	std::cout << "operator<= called" << std::endl;
 	return (this->_rawBits <= rhs.getRawBits());
 }
 
 bool Fixed::operator==(Fixed const &rhs) const
 {
-	std::cout << "operator== called" << std::endl;
 	return (this->_rawBits == rhs.getRawBits());
 }
 
 bool Fixed::operator!=(Fixed const &rhs) const
 {
-	std::cout << "operator!= called" << std::endl;
 	return (this->_rawBits != rhs.getRawBits());
 }
 
 Fixed Fixed::operator+(Fixed const &rhs)
 {
-	std::cout << "operator+ called" << std::endl;
 	Fixed temp(this->toFloat() + rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator-(Fixed const &rhs)
 {
-	std::cout << "operator- called" << std::endl;
 	Fixed temp(this->toFloat() - rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator*(Fixed const &rhs)
 {
-	std::cout << "operator* called" << std::endl;
 	Fixed temp(this->toFloat() * rhs.toFloat());
 	return (temp);
 }
 
 Fixed Fixed::operator/(Fixed const &rhs)
 {
-	std::cout << "operator/ called" << std::endl;
 	Fixed temp(this->toFloat() / rhs.toFloat());
 	return (temp);
 }
@@ -242,7 +224,6 @@ usada para incrementar o objeto "objeto" e, em seguida, chamar a função "foo()
  */
 Fixed &Fixed::operator++(void)
 {
-	std::cout << "++operator called" << std::endl;
 	++this->_rawBits;
 	return (*this);
 }
@@ -272,7 +253,6 @@ a função não precisar diferenciar entre os dois operadores de incremento.
  */
 Fixed Fixed::operator++(int)
 {
-	std::cout << "operator++ called" << std::endl;
 	Fixed temp = *this; // 1
 	this->_rawBits++;   // 2
 	return (temp);      // 1
@@ -410,7 +390,6 @@ onde "objeto1" e "objeto2" são objetos "Fixed" que serão comparados.
  */
 Fixed &Fixed::max(Fixed &lhs, Fixed &rhs)
 {
-	std::cout << "&Fixed::max member function called" << std::endl;
 	if(lhs.getRawBits() > rhs.getRawBits())
 		return (lhs);						// lhs = "left-hand side" (lado direito).
 	else
@@ -443,7 +422,6 @@ como argumentos para a função.
  */
 Fixed const &Fixed::max(Fixed const &lhs, Fixed const &rhs)
 {
-	std::cout << "const &Fixed::max member function called" << std::endl;
 	if(lhs.getRawBits() > rhs.getRawBits())
 		return (lhs);						// lhs = "left-hand side" (lado direito).
 	else
@@ -471,7 +449,6 @@ em ponto flutuante.
  */
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return(this->_rawBits);
 }
 
@@ -494,7 +471,6 @@ em ponto flutuante.
  */
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	this->_rawBits = raw;
 	return;
 }
@@ -519,7 +495,6 @@ uma vez que os bits fracionários são descartados.
  */
 int Fixed::toInt(void) const
 {
-	std::cout << "toInt member function called" << std::endl;
     return (this->_rawBits >> _fractionalBits);
 }
 
@@ -548,7 +523,6 @@ uma vez que os bits fracionários são representados com menos precisão do que 
  */
 float Fixed::toFloat(void) const
 {
-	std::cout << "toFloat member function called" << std::endl;
     return (static_cast<float>(this->_rawBits) / (1 << _fractionalBits));
 }
 
@@ -569,7 +543,6 @@ Em resumo, essa função é útil para imprimir o valor de um objeto Fixed na sa
  */
 std::ostream &operator<<(std::ostream &output_stream, Fixed const &fixed_number)
 {
-	std::cout << "&operator<< friend function called" << std::endl;
 	output_stream << fixed_number.toFloat();
 	return(output_stream);
 }

@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 14:21:15 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/24 16:16:21 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:49:09 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ FragTrap::FragTrap(void) : ClapTrap()
 {
     std::cout << "FragTrap defaut constructor called\n";
     this->setName("FragTrap");
+    this->setClassName("FragTrap");
     this->setHP(100);
     this->setEP(100);
     this->setAD(30);
@@ -25,6 +26,7 @@ FragTrap::FragTrap(void) : ClapTrap()
 FragTrap::FragTrap(std::string const name) : ClapTrap(name)
 {
     std::cout << "FragTrap parametric constructor called\n";
+    this->setClassName("FragTrap");
     this->setHP(100);
     this->setEP(100);
     this->setAD(30);
@@ -54,7 +56,7 @@ FragTrap &FragTrap::operator=(FragTrap const &rhs)
     return (*this);
 }
 
-void FragTrap::highFiveGuys(void)
+void FragTrap::highFivesGuys(void)
 {
     if(this->getHP() == 0)
     {
