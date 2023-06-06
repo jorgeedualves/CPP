@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:32:28 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/02 19:31:07 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:51:13 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,29 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    std::string vtLevel[4]= {"DEBUG", "INFO", "WARNING", "ERROR"};
-    void (Harl::*ptFuncs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    size_t opt;
+    int index = -1; 
+    std::string harlNames[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for(opt = 0; opt < 4; opt++)
+	for(int i = 0; i < 4; i++)
     {   
-        if(!vtLevel[opt].compare(level))
-            break;
+        if(level.compare(harlNames[i]) == 0)
+            index = i;
     }
 
-    switch (opt)
+    switch (index)
     {
       case 0:
-      { 
-        (this->*ptFuncs[0])();
-      }
-      
+        debug();
+        // fallthrough      
       case 1:
-      { 
-        (this->*ptFuncs[1])(); 
-      }
-      
+        info(); 
+        // fallthrough
       case 2:
-      {
-        (this->*ptFuncs[2])();
-      }
-
+        warning();
+        // fallthrough
       case 3:
-      {
-        (this->*ptFuncs[3])();
+        error();
         break;
-      }
       default:
           std::cout << "[ Probably complaining about insignificant problems ]\n";
           break;
