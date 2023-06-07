@@ -6,19 +6,19 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:11:08 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/06 18:04:16 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:06:15 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name("ClapTrap"), _hitPoint(10), _energyPoint(10), _attackDamage(0)
+ClapTrap::ClapTrap(void) : _name("ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
     std::cout << "Default constructor Called\n";
     return;
 }
 
-ClapTrap::ClapTrap(std::string const name) : _name(name), _hitPoint(10), _energyPoint(10), _attackDamage(0)
+ClapTrap::ClapTrap(std::string const name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
     std::cout << "Parametric constructor Called\n";
     return;
@@ -41,8 +41,8 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
 {
     std::cout << "Copy assignment operator called\n";
     const_cast<std::string &> (this->_name) = rhs.getName();
-    this->_hitPoint = rhs.getHP();
-    this->_energyPoint = rhs.getEP();
+    this->_hitPoints = rhs.getHP();
+    this->_energyPoints = rhs.getEP();
     this->_attackDamage = rhs.getAD();
     return (*this);
 }
@@ -54,12 +54,12 @@ std::string ClapTrap::getName(void) const
 
  unsigned int ClapTrap::getHP(void) const
  {
-    return(this->_hitPoint);
+    return(this->_hitPoints);
  }
 
 unsigned int ClapTrap::getEP(void) const
 {
-    return(this->_energyPoint);
+    return(this->_energyPoints);
 }
 
 unsigned int ClapTrap::getAD(void) const
@@ -74,12 +74,12 @@ void ClapTrap::setName(std::string const &name)
 
 void ClapTrap::setHP(unsigned int hitPoints)
 {
-    this->_hitPoint = hitPoints;
+    this->_hitPoints = hitPoints;
 }
 
 void ClapTrap::setEP(unsigned int EnergyPonts)
 {
-    this->_energyPoint = EnergyPonts;
+    this->_energyPoints = EnergyPonts;
 }
 
 void ClapTrap::setAD(unsigned int attackDamage)
@@ -108,7 +108,7 @@ void ClapTrap::attack(const std::string& target)
               << " attacks " << target
               << " causing " << this->getAD() 
               << " points of damage!\n";
-    this->_energyPoint--;
+    this->_energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -123,10 +123,10 @@ void ClapTrap::takeDamage(unsigned int amount)
             << this->getName()
             << " suffered "
             << amount << " points of damage!\n";
-    if (this->_hitPoint <= amount)
-        this->_hitPoint = 0;
+    if (this->_hitPoints <= amount)
+        this->_hitPoints = 0;
     else 
-        this->_hitPoint -= amount;
+        this->_hitPoints -= amount;
     if(this->getHP() <= 0)
     {
         std::cout << "ClapTrap " << this->getName()
@@ -155,8 +155,8 @@ void ClapTrap::beRepaired(unsigned int amount)
               << " recovered " << amount
               << " points of hit points!\n";
    
-    this->_hitPoint += amount;
-    this->_energyPoint--;
+    this->_hitPoints += amount;
+    this->_energyPoints--;
 }
 
 std::ostream &operator<<(std::ostream &out, ClapTrap const &in)

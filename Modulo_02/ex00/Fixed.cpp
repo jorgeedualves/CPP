@@ -6,12 +6,11 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:30:41 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/11 17:38:32 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:40:27 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
 
 int const Fixed::_fractionalBits = 8;
 

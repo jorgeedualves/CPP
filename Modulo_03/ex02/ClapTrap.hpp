@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 11:49:07 by joeduard          #+#    #+#             */
-/*   Updated: 2023/06/05 21:35:37 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:06:16 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ class ClapTrap{
     protected:
     std::string const _name;
     std::string const _className;
-    unsigned int _hitPoint;
-    unsigned int _energyPoint;
+    unsigned int _hitPoints;
+    unsigned int _energyPoints;
     unsigned int _attackDamage;
 };
 
