@@ -5,111 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 16:04:57 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/24 17:26:35 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:26:29 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:26:31 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-template <typename T>
-PmergeMe<T>::PmergeMe(void)
+PmergeMe::PmergeMe(void)
 {
     return;
 }
 
-template <typename T>
-PmergeMe<T>::PmergeMe(const PmergeMe &src)
+PmergeMe::PmergeMe(const PmergeMe &src)
 {
     *this = src;
 }
 
-template <typename T>
-PmergeMe<T>::~PmergeMe(void)
+PmergeMe::~PmergeMe(void)
 {
     return;
 }
 
-template <typename T>
-PmergeMe<T> &PmergeMe<T>::operator=(const PmergeMe<T> &rhs)
+PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
 {
     if (this != &rhs)
         *this = rhs;
     return (*this);
 }
 
-template <typename T>
-bool PmergeMe<T>::hasDuplicate(T &container)
+bool PmergeMe::loadList(int argc, char** argv)
 {
-    T sortedContainer = container;
-    mergeSort(sortedContainer);
-    return (std::unique(sortedContainer.begin(), sortedContainer.end()) != sortedContainer.end());
+	for (int i = 1; i < argc; ++i)
+	{
+		int num = std::atoi(argv[i]);
+
+		if (num < 0)
+			return (false);        
+		this->_inputDeque.push_back(num);
+	}
+	return (true);
 }
 
-template <typename T>
-void PmergeMe<T>::mergeSort(T &container)
+bool PmergeMe::hasDuplicate(void)
 {
-    mergeSort(container, container.begin(), container.end());
+    _orderedDeque = this->_inputDeque;
+    std::sort(_orderedDeque.begin(), _orderedDeque.end(), &PmergeMe::compare);
+    return (std::unique(_orderedDeque.begin(), _orderedDeque.end()) != _orderedDeque.end());
 }
 
-template <typename T>
-void PmergeMe<T>::mergeSort(T &container, typename T::iterator begin, typename T::iterator end)
+bool PmergeMe::compare(unsigned int a, unsigned int b)
 {
-    if (begin == end || ++begin == end)
-        return;
-    --begin;
-    typename T::iterator middle = begin;
-    std::advance(middle, std::distance(begin, end) / 2);
-    
-    mergeSort(container, begin, middle);
-    mergeSort(container, middle, end);
-    mergeMe(begin, middle, end);
+	return a < b;
 }
 
-template <typename T>
-void PmergeMe<T>::mergeMe(typename T::iterator begin, typename T::iterator middle, typename T::iterator end)
-{
-    T left(begin, middle);
-    T right(middle, end);
-    
-    typename T::iterator leftIt = left.begin();
-    typename T::iterator rightIt = right.begin();
-    typename T::iterator mergeIt = begin;
-
-    while (leftIt != left.end() && rightIt != right.end())
-    {
-        if (*leftIt <= *rightIt)
-        {
-            *mergeIt = *leftIt;
-            ++leftIt;
-        }
-        else
-        {
-            *mergeIt = *rightIt;
-            ++rightIt;
-        }
-        ++mergeIt;
-    }
-    while (leftIt != left.end())
-    {
-        *mergeIt = *leftIt;
-        ++leftIt;
-        ++mergeIt;
-    }
-    while (rightIt != right.end())
-    {
-        *mergeIt = *rightIt;
-        ++rightIt;
-        ++mergeIt;
-    }
-}
-
-template <typename T>
-void PmergeMe<T>::printMe(T &container)
+void PmergeMe::printUnsorted(void)
 {
     int i = 0;
     
-    for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
+    for (std::deque<unsigned int>::const_iterator it = _inputDeque.begin(); it != _inputDeque.end(); ++it)
     {
         std::cout << *it << " ";
         i++;
@@ -122,5 +76,104 @@ void PmergeMe<T>::printMe(T &container)
     std::cout << std::endl;
 }
 
-template class PmergeMe < std::deque<int> >;
-template class PmergeMe < std::list<int> >;
+void PmergeMe::printSorted(void)
+{
+    int i = 0;
+    
+    for (std::deque<unsigned int>::const_iterator it = _orderedDeque.begin(); it != _orderedDeque.end(); ++it)
+    {
+        std::cout << *it << " ";
+        i++;
+        if (i >= 15)
+        {
+            std::cout << "[...]";
+            break;
+        }
+    }
+    std::cout << std::endl;
+}
+
+size_t PmergeMe::containerSize(void)
+{
+	return this->_inputDeque.size();
+}
+
+
+/*  Ford–Johnson algorithm  */
+
+void PmergeMe::sortVector()
+{
+	std::deque<unsigned int> copy(this->_inputDeque);
+	std::deque<std::pair<unsigned int, unsigned int> > K_pairs;
+	unsigned int bucket[2];
+	this->_orderedVector.reserve(this->_inputDeque.size() + 2);
+	while (copy.size() > 1)										
+	{
+		bucket[0] = copy.front();
+		copy.pop_front();
+		bucket[1] = copy.front();
+		copy.pop_front();
+		if (bucket[0] < bucket[1])
+			K_pairs.push_back(std::make_pair(bucket[0],bucket[1]));
+		else
+			K_pairs.push_back(std::make_pair(bucket[1],bucket[0]));
+	}
+	std::sort(K_pairs.begin(), K_pairs.end(), &PmergeMe::pairCompare);
+	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
+	{
+		this->_orderedVector.push_back((*it).second);
+	}
+	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
+	{
+		this->binaryVectorInsert((*it).first);
+	}
+	if (copy.size() == 1)
+		this->binaryVectorInsert(copy.front());
+};
+
+void PmergeMe::sortList()
+{
+	std::deque<unsigned int> copy(this->_inputDeque);
+	std::deque<std::pair<unsigned int, unsigned int> > K_pairs;
+	unsigned int bucket[2];
+
+	while (copy.size() > 1)
+	{
+		bucket[0] = copy.front();
+		copy.pop_front();
+		bucket[1] = copy.front();
+		copy.pop_front();
+		if (bucket[0] < bucket[1])
+			K_pairs.push_back(std::make_pair(bucket[0],bucket[1]));
+		else
+			K_pairs.push_back(std::make_pair(bucket[1],bucket[0]));
+	}
+	std::sort(K_pairs.begin(), K_pairs.end(), &PmergeMe::pairCompare);
+	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
+	{
+		this->_orderedList.push_back((*it).second);
+	}
+	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
+	{
+		this->binaryListInsert((*it).first);
+	}
+	if (copy.size() == 1)
+		this->binaryListInsert(copy.front());
+}
+	
+void PmergeMe::binaryVectorInsert(unsigned int value)
+{
+	std::vector<unsigned int>::iterator it = std::lower_bound(this->_orderedVector.begin(), this->_orderedVector.end(), value);
+	this->_orderedVector.insert(it, value);
+}
+
+void PmergeMe::binaryListInsert(unsigned int value)
+{
+	std::list<unsigned int>::iterator it = std::lower_bound(this->_orderedList.begin(), this->_orderedList.end(), value);
+	this->_orderedList.insert(it, value);
+}
+
+bool PmergeMe::pairCompare(std::pair<unsigned int, unsigned int> a, std::pair<unsigned int, unsigned int> b)
+{
+	return (a.second < b.second);
+}

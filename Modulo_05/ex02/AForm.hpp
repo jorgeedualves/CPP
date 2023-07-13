@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 12:14:39 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 20:18:35 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:57:27 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:57:29 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ class AForm
 {
     public:
         AForm(void);
-        AForm(const std::string name, const int gradeSing, const int gradeExec);
+        AForm(const std::string name, const int gradeSign, const int gradeExec);
         AForm(const AForm &src);
         virtual ~AForm(void);
 
         AForm				&operator=(const AForm &rhs);
 
         const std::string	&getName(void) const;
-        bool 				getSigned(void) const;
+        bool 				getIsFormSigned(void) const;
         int 				getGradeToSign(void) const;
         int 				getGradeToExecute(void) const;
 
@@ -39,7 +39,7 @@ class AForm
 
         void				beSigned(const Bureaucrat &brct);
 
-        virtual void		execute(const Bureaucrat &executor) const = 0;            
+        virtual void		execute(Bureaucrat const &executor) const = 0;            
 
         class GradeTooHighException : public std::exception
         {
@@ -64,7 +64,7 @@ class AForm
         };
 
     protected:
-        const std::string	_target;
+        std::string	_target;
 
     private:
         const std::string	_name;

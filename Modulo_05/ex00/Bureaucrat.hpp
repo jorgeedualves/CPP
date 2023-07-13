@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 18:54:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 14:09:01 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:55:19 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:55:30 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ class Bureaucrat
         Bureaucrat(const std::string name, const int grade);
         Bureaucrat(const Bureaucrat &src);
         ~Bureaucrat(void);
-
-        Bureaucrat &operator=(Bureaucrat const &rhs);
+        
+        Bureaucrat &operator=(Bureaucrat const &hrs);
 
         const std::string &getName(void) const;
         int getGrade(void) const;
         void incrementGrade(void);
         void decrementGrade(void);
-
+        
         class GradeTooHighException : public std::exception
         {
           public:
@@ -43,11 +43,10 @@ class Bureaucrat
             public:
                 const char* what(void) const throw();
         };
-
+        
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
-
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &in);

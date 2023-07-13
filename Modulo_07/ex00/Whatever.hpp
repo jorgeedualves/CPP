@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.tpp                                       :+:      :+:    :+:   */
+/*   Whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 17:12:18 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/18 17:17:36 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:19:12 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:21:14 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
+#ifndef WHATEVER_CPP
+#define WHATEVER_CPP
 
-template<typename T>
-typename T::iterator easyfind(T &container, int value)
+#include <iostream>
+
+template <typename T> 
+void swap(T &a, T &b)
 {
-    typename T::iterator iter = std::find(container.begin(), container.end(), value);
-
-    if (iter == container.end())
-    {
-        throw std::runtime_error(std::string("Value not found"));
-    }
-    return (iter);
+    T temp;
+    
+    temp = a;
+    a = b;
+    b = temp;
 }
+
+template <typename T>
+const T& min(const T &a, const T &b)
+{
+    return (a < b) ? a : b;
+}
+
+template <typename T>
+const T& max(const T &a, const T &b)
+{
+    return (a > b) ? a : b;
+}
+
+#endif

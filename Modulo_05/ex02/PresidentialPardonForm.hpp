@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 23:25:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/02 23:34:25 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:58:33 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:58:35 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
 
 #include "AForm.hpp"
+
 class PresidentialPardonForm : public AForm
 {
     public:
@@ -27,7 +27,7 @@ class PresidentialPardonForm : public AForm
 
         const std::string &getTarget(void) const;
 
-        void execute(const Bureaucrat &executor) const;
+        void execute(Bureaucrat const &executor) const;
 };
 
 #endif

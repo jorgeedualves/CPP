@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 15:56:20 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/24 17:27:17 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:26:40 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:26:42 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,42 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <deque>
-#include <list>
+#include <cstdlib>
+#include <ctime>
+#include <stdexcept>
 #include <algorithm>
+#include <deque>
+#include <vector>
+#include <list>
 
-template <typename T>
 class PmergeMe
 {
     public:
         PmergeMe(void);
-        PmergeMe(const PmergeMe<T> &src);
+        PmergeMe(const PmergeMe &src);
         ~PmergeMe(void);
 
-        PmergeMe &operator=(const PmergeMe<T> &rhs);
+        PmergeMe &operator=(const PmergeMe &rhs);
 
-        bool hasDuplicate(T &container);
-        void mergeSort(T &container);
-        void mergeSort(T &container, typename T::iterator begin, typename T::iterator end);
-        void mergeMe(typename T::iterator begin, typename T::iterator middle, typename T::iterator end);
-        void printMe(T &container);
+		bool loadList(int argc, char **argv);
+        bool hasDuplicate(void);
+		static bool compare(unsigned int a, unsigned int b);
+
+        void printUnsorted(void);
+        void printSorted(void);
+		size_t containerSize(void);
+
+		void sortList(void);
+		void binaryListInsert(unsigned int value);
+		void sortVector(void);
+		void binaryVectorInsert(unsigned int value);
+		static bool pairCompare(std::pair<unsigned int, unsigned int> a, std::pair<unsigned int, unsigned int> b);
+
+	private:
+		std::deque<unsigned int> _inputDeque;
+		std::deque<unsigned int> _orderedDeque;
+		std::list<unsigned int> _orderedList;
+		std::vector<unsigned int> _orderedVector;
 };
 
 #endif

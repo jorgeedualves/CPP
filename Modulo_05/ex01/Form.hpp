@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 12:14:39 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/03 20:45:09 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:56:51 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:56:57 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ class Form
 
         class GradeTooHighException : public std::exception
         {
-          public:
-            const char* what(void) const throw();
+			public:
+            	const char* what(void) const throw();
         };
     
         class GradeTooLowException : public std::exception

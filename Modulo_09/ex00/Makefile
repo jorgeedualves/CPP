@@ -24,7 +24,6 @@ all:				$(NAME)
 
 RESET			= 	\033[0m
 GREEN 			= 	\033[38;5;46m
-RED				=	\033[1;31m
 
 $(NAME):	$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 			$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
@@ -37,15 +36,15 @@ run:
 			./$(NAME)
 
 runv:		all
-			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./$(NAME) input.txt
+			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./btc
 
 clean:
 			@$(RM) $(OBJ_DIR)
-			@echo "$(RED)Object files removed $(RESET)"
+			@echo "$(GREEN)Object files removed $(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)	
-			@echo "$(RED)Executable removed $(RESET)"
+			@echo "$(GREEN)Executable removed $(RESET)"
 
 re:			fclean all
 

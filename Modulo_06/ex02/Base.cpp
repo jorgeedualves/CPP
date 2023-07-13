@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 17:52:24 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/16 17:21:25 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/15 11:59:41 by azamario          #+#    #+#             */
+/*   Updated: 2023/07/13 12:40:34 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,59 @@
 
 Base* generate(void)
 {
-    unsigned int seed = static_cast<unsigned int>(time(0));
-    int ranNum = rand_r(&seed) % (3);
+  srand(clock());
 
+	switch (rand() % 3)
+	{
+		case 0 : return (new A);
+		case 1 : return (new B);
+		case 2 : return (new C);
 
-    switch (ranNum)
-    {
-        case 0:
-            return (new A());
-            break;
-        case 1:
-            return (new B());
-            break;
-        case 2:
-            return (new C());
-            break;
-        default:
-            return (NULL);
-            break;
-    }
+		default: return (NULL);
+	}
 }
-
 
 void identify(Base* p)
 {
-    if (dynamic_cast<A*>(p))
-        std::cout << "Type: A\n";
-    else if (dynamic_cast<B*>(p))
-        std::cout << "Type B\n";
-    else if (dynamic_cast<C*>(p))
-        std::cout << "Type C\n";
-    else 
-        std::cerr << "invalid pointer\n";
+	if (dynamic_cast<A*>(p))
+    	std::cout << "Object type A" << std::endl;
+  	else if (dynamic_cast<B*>(p))
+    	std::cout << "Object type B" << std::endl;
+  	else if (dynamic_cast<C*>(p))
+    	std::cout << "Object type C" << std::endl;
+	else
+		std::cout << "Object not of type A, B or C" << std::endl;
 }
 
 void identify(Base& p)
 {
-    try
-    {
-        A a = dynamic_cast<A&>(p);
-        std::cout << "Type: A\n";
-    }
-    catch (const std::exception& e1)
-    {
-        try
-        {
-            B b = dynamic_cast<B&>(p);
-            std::cout << "Type: B\n";
-        }
-        catch (const std::exception& e2)
-        {
-            try
-            {
-                C c = dynamic_cast<C&>(p);
-                std::cout << "Type: C\n";
-            }
-            catch(const std::exception& e)
-            {
-                std::cerr << "Invalid reference\n";
-            }
-        }
-    }
+  try 
+	{
+		A a = dynamic_cast<A&>(p);		
+		std::cout << "Object of type A" << std::endl;
+	}
+	catch (std::exception &excep)
+	{
+		std::cout << "catch A: " << excep.what() << std::endl;
+	}
+
+	try 
+	{
+		B b = dynamic_cast<B&>(p);
+		std::cout << "Object type B" << std::endl;
+	}
+	catch (std::exception &excep)
+	{
+		std::cout << "catch B: " << excep.what() << std::endl;
+	}
+
+	try 
+	{
+		C c = dynamic_cast<C&>(p);		
+		std::cout << "Object type C" << std::endl;
+	}
+	catch (std::exception &excep)
+	{
+		std::cout << "catch C: " << excep.what() << std::endl;
+	}
 }

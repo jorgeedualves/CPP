@@ -5,62 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 09:09:31 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/12 17:02:25 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:16:21 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:16:24 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
-Data::Data(void) : lenght(10), width(50)
+Data::Data(void) :length(10), width(20), area(0)
 {
     return;
 }
-
 
 Serializer::Serializer(void)
 {
-    std::cout << "Default Constructor Called\n";
     return;
 }
 
-Serializer::Serializer(const Serializer &src)
+Serializer::Serializer(const Serializer& src)
 {
-     std::cout << "Copy Constructor Called\n";
-    (void) src;
+    (void)src;
 }
 
 Serializer::~Serializer(void)
 {
-    std::cout << "Destructor Called\n";
+    std::cout << "Destructor called";
     return;
 }
 
 Serializer& Serializer::operator=(const Serializer& rhs)
 {
-    (void) rhs;
+    std::cout << "Copy constructor called";
+    (void)rhs;
     return (*this);
 }
-
-
-float Serializer::calculateRectangleArea(Data* data)
+    
+void Serializer::calculateRectangleArea(Data* data)
 {
-    return(data->lenght * data->width);
+	data->area = data->length * data->width;
+    return;
+	
 }
 
-uintptr_t Serializer::serialize(Data* ptr )
+uintptr_t Serializer::serialize(Data* ptr)
 {
     return(reinterpret_cast<uintptr_t>(ptr));
 }
 
-Data *Serializer::deserialize(uintptr_t raw )
+Data* Serializer::deserialize(uintptr_t raw)
 {
     return(reinterpret_cast<Data*>(raw));
 }
 
-std::ostream &operator<<( std::ostream &cout, const Data &data)
+std::ostream &operator<<(std::ostream &outputStream, const Data &data)
 {
-  cout << "Altura: " << data.lenght << "\nLargura: " << data.width << "\n";
-
-  return (cout);
+    outputStream << "Length: " << data.length << " Width: " << data.width << " Area: " << data.area << "\n";
+    return(outputStream); 
 }

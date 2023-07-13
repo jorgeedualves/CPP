@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 17:42:39 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/16 18:19:07 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:21:35 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:21:37 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
+
+#include <iostream>
 
 template <typename T>
-void swap(T& a, T& b)
+void iter(T* array, size_t lenght, void (*f)(const T&))
 {
-    T temp;
-    temp = a;
-    a = b;
-    b = temp;
+    for(size_t i = 0; i < lenght; i++)
+        f(array[i]);
 }
 
 template <typename T>
-const T& min(const T& a, const T& b)
+void printArray(const T& n)
 {
-    return((a < b) ? a : b);
-}
-
-template <typename T>
-const T& max(const T& a, const T& b)
-{
-    return((a > b) ? a : b);
+    std::cout << n << " ";
 }
 
 #endif

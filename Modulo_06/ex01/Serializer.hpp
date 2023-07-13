@@ -5,43 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 16:36:20 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/11 12:53:07 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/10 16:36:22 by azamario          #+#    #+#             */
+/*   Updated: 2023/07/13 13:16:00 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <stdint.h>
 
 struct Data
 {
-    float lenght;
-    float width;
-
+    float length;
+    float width; 
+	float area;
     Data(void);
 };
-
 
 class Serializer
 {
     public:
-        Serializer(void);
-        Serializer(const Serializer&);
         ~Serializer(void);
+        Serializer&         operator=(const Serializer& src);
 
-        Serializer& operator=(const Serializer& rhs);
+        static uintptr_t    serialize(Data* ptr);
+        static Data*        deserialize(uintptr_t raw);
+        static void         calculateRectangleArea(Data* data);    
 
-        float calculateRectangleArea(Data* data);
-        
-        static uintptr_t serialize(Data* ptr);
-        static Data *deserialize(uintptr_t raw);
-
+	private:
+        Serializer(void);
+        Serializer(const Serializer& src) ;	
 };
 
-std::ostream &operator<<( std::ostream &cout, const Data &data);
+std::ostream &operator<<(std::ostream &outputStream, const Data &data);
 
 #endif

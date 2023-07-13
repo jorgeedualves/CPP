@@ -1,32 +1,29 @@
-NAME			=	form
+SOURCE_FILES	=	main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
-SOURCES_FILES	=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
-SOURCES_FILES	+=	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-
-SOURCES_DIR		=	./
+SOURCE_DIR		=	./
 
 OBJ_DIR			=	objects
 
-HEADERS			=	Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
-HEADERS			+=	RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+HEADERS			=	Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 
-SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
+SOURCES			=	$(addprefix $(SOURCE_DIR)/, $(SOURCE_FILES))
 
-OBJECTS			=	$(SOURCES:$(SOURCES_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJECTS			=	$(SOURCES:$(SOURCE_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
+NAME			=	bureaucrat
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -pedantic-errors -g -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 RM				=	rm -rf
 
-$(OBJ_DIR)/%.o:		$(SOURCES_DIR)/%.cpp $(HEADERS)
+$(OBJ_DIR)/%.o:		$(SOURCE_DIR)/%.cpp $(HEADERS)
 					$(CC) $(CFLAGS) -c $< -o $@
 
 all:				$(NAME)
 
 RESET			= 	\033[0m
 GREEN 			= 	\033[38;5;46m
-RED				=	\033[1;31m
 
 $(NAME):	$(OBJ_DIR) $(OBJECTS) $(HEADERS)
 			$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
@@ -42,12 +39,12 @@ runv:		all
 			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./$(NAME)
 
 clean:
-			@$(RM) $(OBJ_DIR)
-			@echo "$(RED)Object files removed $(RESET)"
+			@$(RM) $(OBJ_DIR) *_shrubbery
+			@echo "$(GREEN)Object files removed $(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)	
-			@echo "$(RED)Executable removed $(RESET)"
+			@echo "$(GREEN)Executable removed $(RESET)"
 
 re:			fclean all
 

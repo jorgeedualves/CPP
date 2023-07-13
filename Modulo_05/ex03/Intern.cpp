@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 12:47:44 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/08 22:28:21 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:03:28 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:04:28 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,67 @@
 
 Intern::Intern(void)
 {
-    std::cout << "[Intern:: Constructor called]\n";
     return;
 }
 
-Intern::Intern(const Intern& src) 
+Intern::Intern(const Intern& src)
 {
-    std::cout << "[Intern:: Copy Constructor called]\n";
-    *this = src;
+  	*this = src;
 }
 
 Intern::~Intern(void)
 {
-     std::cout << "[Intern:: Destructor called]\n";
+  	return ;
 }
 
-Intern& Intern::operator=(const Intern& rhs)
+Intern &Intern::operator=(const Intern& rhs)
 {
-    (void)rhs;
-    return(*this);
+	(void)rhs;
+  	return (*this);
 }
 
-AForm* Intern::shrubberyCreationForm(const std::string target) const
+AForm *Intern::makeForm(const std::string name, const std::string target)
 {
-    return(new ShrubberyCreationForm(target));
-}
+    std::string formType[3] = { "Shrubbery Creation Form", "Robotomy Request Form",
+								                "Presidential Pardon Form" };
 
-AForm* Intern::robotomyRequestForm(const std::string target) const
-{
-    return(new RobotomyRequestForm(target));
-}
+	AForm *(Intern::*f[3])(const std::string) const = { &Intern::makeShrubberyCreationForm, 
+														&Intern::makeRobotomyRequestForm, 
+														&Intern::makePresidentialPardonForm };
 
-AForm* Intern::presidentialPardonForm(const std::string target) const
-{
-    return(new PresidentialPardonForm(target));
-}
-
-AForm* Intern::invalidForm(const std::string target) const {
-  (void)target;
-  return (NULL);
-}
-
-
-AForm* Intern::makeForm(const std::string name, const std::string target) {
-  std::string formType[4] = {"shrubbery creation",
-                             "robotomy request",
-                             "presidential pardon",
-                             "invalid form"};
-  AForm* (Intern::*f[4])(const std::string) const = {
-      &Intern::shrubberyCreationForm,
-      &Intern::robotomyRequestForm,
-      &Intern::presidentialPardonForm,
-      &Intern::invalidForm};
-
-  for (int i = 0; i < 3; i++) {
-    if (!formType[i].compare(name)) {
-      return ((this->*f[i])(target));
+	  for (int i = 0; i < 3; i++)
+	  {
+		  if (!formType[i].compare(name))
+		  {
+			  std::cout << "Intern creates " << name << " :D" << std::endl;
+			  return ((this->*f[i])(target));
+      }
     }
-  }
-  return ((this->*f[4])(target));
+    throw Intern::NoMatchException();
+}
+
+AForm* Intern::makePresidentialPardonForm(const std::string target) const
+{
+	  return (new PresidentialPardonForm(target));
+}
+
+AForm* Intern::makeRobotomyRequestForm(const std::string target) const
+{
+	  return (new RobotomyRequestForm(target));
+}
+
+AForm* Intern::makeShrubberyCreationForm(const std::string target) const
+{
+	  return (new ShrubberyCreationForm(target));
+}
+
+AForm* Intern::invalidForm(const std::string target) const
+{
+	(void)target;
+  	return (NULL);
+}
+
+const char* Intern::NoMatchException::what(void) const throw()
+{
+    return ("This form does not exist! :(");
 }

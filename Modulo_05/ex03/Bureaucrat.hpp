@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 18:54:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/08 17:01:47 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:02:35 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:03:23 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,23 @@ class Bureaucrat
     public:
         Bureaucrat(void);
         Bureaucrat(const std::string name, const int grade);
-        Bureaucrat(const Bureaucrat &);
+        Bureaucrat(const Bureaucrat &src);
         ~Bureaucrat(void);
 
-        Bureaucrat &operator=(Bureaucrat const &);
+        Bureaucrat &operator=(Bureaucrat const &rhs);
 
         const std::string   &getName(void) const;
         int                 getGrade(void) const;
         void                incrementGrade(void);
         void                decrementGrade(void);
 
-        void                signForm(const AForm&) const;
-        void                executeForm(const AForm&) const;
+        void                signForm(const AForm &form) const;
+        void				executeForm(AForm const &form) const;
 
         class GradeTooHighException : public std::exception
         {
           public:
-            const char* what(void) const throw();
+            const char*     what(void) const throw();
         };
     
         class GradeTooLowException : public std::exception
@@ -52,11 +52,11 @@ class Bureaucrat
         };
 
     private:
-        const std::string _name;
-        int _grade;
+        const std::string   _name;
+        int                 _grade;
 
 };
 
-std::ostream &operator<<(std::ostream &cout, const Bureaucrat &cin);
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &in);
 
 #endif

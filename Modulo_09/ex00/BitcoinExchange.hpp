@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 17:59:38 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/23 22:34:14 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:25:29 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:25:31 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
 #include <iomanip>
+#include <istream>
 #include <map>
 
 struct BitcoinExchange
@@ -26,11 +26,11 @@ struct BitcoinExchange
     std::map<std::string, double> _map;
 };
 
-void        bitcoinExchange(std::string cvsFileName, std::string txtFileName);
-void        getBitcoinData(BitcoinExchange &bitcoinData, std::string fileName);
-void        readInputAndExchangeData(BitcoinExchange &bitcoinData, std::string fileName);
+void        bitcoinExchange(std::string csvFile, std::string txtFile);
+void        getBitcoinData(BitcoinExchange &bitcoinData, std::string file);
+void        readInputAndExchangeData(BitcoinExchange &bitcoinData, std::string file);
 double      exchangeRate(BitcoinExchange bitcoinData, std::string date);
 std::string pastDate(std::string date);
-bool        validDate(const std::string &date);
+bool        ValidDate(const std::string &date);
 
 #endif

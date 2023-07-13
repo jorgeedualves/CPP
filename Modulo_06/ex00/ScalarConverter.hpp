@@ -5,46 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 22:58:51 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/10 11:53:59 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/12 23:57:42 by azamario          #+#    #+#             */
+/*   Updated: 2023/07/13 13:14:46 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTE_HPP
-#define SCALARCONVERTE_HPP
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
-#include <cstdlib>
-#include <sstream>
-#include <string>
 #include <iostream>
+#include <sstream>
+#include <cstdlib>
+#include <cmath>
+#include <string>
+
+# define INTMAX 2147483647
+# define INTMIN -2147483648
 
 class ScalarConverter
 {
-    public:
-        ScalarConverter(void);
-        explicit ScalarConverter(const std::string&);
-        ScalarConverter(ScalarConverter&);
-        ~ScalarConverter(void);
+	public:
+		~ScalarConverter(void);
+		ScalarConverter		&operator=(const ScalarConverter &hrs);
+		static void			convert(const std::string &convertIt);
+		
+	private:
+		ScalarConverter(void);
+		ScalarConverter(const ScalarConverter &src);
+		
+		static void			_convert(void);
 
-        ScalarConverter& operator=(const ScalarConverter& rhs);
+		static void			_print(void);
+		static void			_printConvertedValue(void);
+		static void			_printNonStandartValue(void);
 
-        operator char();
-        operator int();
-        operator float();
-        operator double();
+		static bool			_isNan(void);
+		static bool			_isString(void);
+		static bool			_isNonStandartValue(void);
 
-        std::string getInput(void) const;
-        double getRaw(void) const;
+		static void			_convertToChar(void);
+		static void			_convertToInt(void);
+		static void			_convertToFloat(void);
+		static void			_convertToDouble(void);
 
-        std::string castingChar(void);
-        std::string castingInt(void);
-        std::string castingfloat(void);
-        std::string castingDouble(void);
-
-    private:
-        const std::string _input;
-        double _raw;
-
+		static std::string 	_string;
+		static std::string 	_nonStandartValue;
+		static char 		_char;
+		static int			_int;
+		static float		_float;
+		static double		_double;
+		static bool			_nan;	
 };
 
 #endif

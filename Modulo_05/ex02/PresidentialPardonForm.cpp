@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 23:34:45 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/04 11:20:17 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:58:15 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:58:23 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,28 @@
 
 PresidentialPardonForm::PresidentialPardonForm(void) : AForm()
 {
-    std::cout << "[PresidentialPardonForm:: Constructor called]\n";
     return;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
     : AForm("Presidential Pardon Form ", 25, 5)
 {
-    std::cout << "[PresidentialPardonForm:: Constructor Parametric called]\n";
     this->setTarget(target);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(src)
 {
-    std::cout << "[PresidentialPardonForm:: Copy Constructor called]\n";
     *this = src;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-    std::cout << "[PresidentialPardonForm:: Destructor called]\n";
     return;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &rhs)
 {
-    (void)rhs;
+    this->_target = rhs._target;
     return (*this);
 }
 
@@ -50,12 +46,12 @@ const std::string &PresidentialPardonForm::getTarget(void) const
     return (this->_target);
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor) const
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    if (this->getSigned() == false)
+    if (this->getIsFormSigned() == false)
         throw AForm::UnsignedFormException();
     else if (executor.getGrade() > this->getGradeToExecute())
-        throw AForm::GradeTooHighException();
-    else if (executor.getGrade() <- this->getGradeToExecute())
+        throw AForm::GradeTooLowException();
+    else if (executor.getGrade() <= this->getGradeToExecute())
         std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox\n";
 }

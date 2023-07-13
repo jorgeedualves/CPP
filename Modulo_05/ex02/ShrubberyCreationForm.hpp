@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/02 12:45:59 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/02 17:10:12 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:59:29 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:59:35 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 #include "AForm.hpp"
 #include <fstream>
 
-#define TREE " *      \n\
-              *o*     \n\
-             *o*o*    \n\
-            *o***o*   \n\
-           *o*****o*  \n\
-          **o*****o** \n\
-               ||     \n\
-             ======   \n" 
-            
 class ShrubberyCreationForm : public AForm
 {
     public:
@@ -37,7 +28,7 @@ class ShrubberyCreationForm : public AForm
 
     const std::string &getTarget(void) const;
 
-    void execute(const Bureaucrat &exe) const;
+    void execute(Bureaucrat const &executor) const;
 };
 
 #endif

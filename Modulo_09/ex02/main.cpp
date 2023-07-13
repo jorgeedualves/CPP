@@ -5,17 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 16:43:27 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/24 17:18:27 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:26:18 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:26:20 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <cstdlib>
 
 int main(int argc, char *argv[])
 {
     std::cout << std::endl;
+
+	PmergeMe input;
+	clock_t start;
+    clock_t end;
 
     if (argc < 2)
 	{
@@ -23,57 +26,42 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	std::deque<int> dequeSequence;
-	std::list<int> listSequence;
-	PmergeMe<std::deque<int> > mergeMeDeque;
-	PmergeMe<std::list<int> > mergeMeList;
-	
-	for (int i = 1; i < argc; ++i)
+	if (!input.loadList(argc, argv))
 	{
-        int num = std::atoi(argv[i]);
+		std::cerr << "Error: Negative number not allowed\n" << std::endl;
+		return (1);
+	}
 
-        if (num <= 0)
-        {
-            std::cout << "Error: Only positive integers are allowed\n" << std::endl;
-            return (1);
-        }
-        dequeSequence.push_back(num);
-        listSequence.push_back(num);
-    }
-
-	if (mergeMeDeque.hasDuplicate(dequeSequence) || mergeMeList.hasDuplicate(listSequence))
+	if (input.hasDuplicate())
     {
-      std::cout << "Error: Duplicated numbers.\n" << std::endl;
+      std::cerr << "Error: Duplicated numbers not allowed\n" << std::endl;
       return (1);
     }
 
-	clock_t start;
-    clock_t end;
-
     std::cout << "Before: ";
-	mergeMeDeque.printMe(dequeSequence);
+	input.printUnsorted();
 
     start = clock();
-	mergeMeDeque.mergeSort(dequeSequence);
+	input.sortVector();
 	end = clock();
 
     std::cout << "After: ";
-	mergeMeDeque.printMe(dequeSequence);
+	input.printSorted();
     std::cout << std::endl;
-	std::cout   << "Time to process a range of " << dequeSequence.size() 
-                << " elements with std::deque : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
+	std::cout   << "Time to process a range of " << input.containerSize() 
+                << " elements with std::vector : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
                 << " seconds" << std::endl;
 
-	start = clock();
-	mergeMeList.mergeSort(listSequence);
+    start = clock();
+	input.sortList();
 	end = clock();
-    
-	std::cout << "Time to process a range of " << listSequence.size()
-				<< " elements with std::list : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
-				<< " seconds" << std::endl;
+
+    std::cout << std::endl;
+	std::cout   << "Time to process a range of " << input.containerSize() 
+                << " elements with std::list : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
+                << " seconds" << std::endl;
 
     std::cout << std::endl;
 
 	return (0);
 }
-

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 18:54:30 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/05 18:02:03 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:57:48 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:57:49 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class Bureaucrat
         void                decrementGrade(void);
 
         void                signForm(const AForm &form) const;
-        void                executeForm(const AForm &form) const;
+        void				executeForm(AForm const &form) const;
 
         class GradeTooHighException : public std::exception
         {
@@ -52,7 +52,7 @@ class Bureaucrat
         };
 
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
 
 };

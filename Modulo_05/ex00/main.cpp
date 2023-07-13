@@ -5,101 +5,126 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 19:15:56 by joeduard          #+#    #+#             */
-/*   Updated: 2023/04/28 14:21:01 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 12:55:37 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 12:55:46 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-int main(void)
+int main(void) 
 {
-    Bureaucrat *bureaucrat;
+	Bureaucrat* bureaucrat;
 
-    try
-    {
-        bureaucrat = new Bureaucrat("Joao 1", 1);
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cerr << exc.what() << std::endl;
-    }
+	std::cout << "\nTESTE 1" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Marcos", 0);
+	  	std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Marcos**\n";
+    	std::cerr << e.what() << "\n";
+  	}
 
-     try
-    {
-        bureaucrat = new Bureaucrat("Joao 2", 3);
-        bureaucrat->incrementGrade();
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cerr << exc.what() << std::endl;
-    }
+	std::cout << "\nTESTE 2" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Joao", 1);
+	  	std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Joao**\n";
+    	std::cerr << e.what() << "\n";
+  	}
 
-     try
-    {
-        bureaucrat = new Bureaucrat("Joao 3", 2);
-        bureaucrat->decrementGrade();
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cerr << exc.what() << std::endl;
-    }
+	std::cout << "\nTESTE 3" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Jorge", 1);
+	  	bureaucrat->decrementGrade();
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Jorge**\n";
+    	std::cerr << e.what() << "\n";
+  	}
 
-    try
-    {
-        bureaucrat = new Bureaucrat("Raquel", -1);
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cout << "**catch Raquel**\n";
-        std::cerr << exc.what() << std::endl;
-    }
+	std::cout << "\nTESTE 4" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Roberto", 1);
+	  	bureaucrat->incrementGrade();
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Roberto**\n";
+    	std::cerr << e.what() << "\n";
+		delete bureaucrat;
+  	}
 
-    try
-    {
-        bureaucrat = new Bureaucrat("Rafaela", 1);
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        bureaucrat->incrementGrade();
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cout << "**catch Rafaela**\n";
-        std::cerr << exc.what() << std::endl;
-    }
+	std::cout << "\nTESTE 5" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Jose", -1);
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Jose**\n";
+    	std::cerr << e.what() << "\n";
+  	}
 
-    try
-    {
-        bureaucrat = new Bureaucrat("Rosana", 150);
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        bureaucrat->decrementGrade();
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
+	std::cout << "\nTESTE 6" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Rosana", 150);
+	  	bureaucrat->incrementGrade();
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
         std::cout << "**catch Rosana**\n";
-        std::cerr << exc.what() << std::endl;
-    }
+    	std::cerr << e.what() << "\n";
+  	}
 
-    try
-    {
-        bureaucrat = new Bureaucrat("Rita", 151);
-        std::cout << "Bureaucrat : "<< *bureaucrat << "\nGrade: " << bureaucrat->getGrade() << "\n";
-        delete bureaucrat;    
-    }
-    catch (std::exception & exc)
-    {
-        std::cout << "**catch Rita**\n";
-        std::cerr << exc.what() << std::endl;
-    }
-    
-    return (0);
+	std::cout << "\nTESTE 7" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Roberta", 150);
+	  	bureaucrat->decrementGrade();
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Roberta**\n";
+    	std::cerr << e.what() << "\n";
+		delete bureaucrat;
+  	}
+
+	std::cout << "\nTESTE 8" << std::endl;
+	try
+	{
+		bureaucrat = new Bureaucrat("Rosa", 151);
+		std::cout << *bureaucrat;
+	  	delete bureaucrat;
+  	}
+  	catch (std::exception& e) 
+  	{
+        std::cout << "**catch Rosa**\n";
+    	std::cerr << e.what() << "\n";
+  	}
+	  
+	return (0);
 }

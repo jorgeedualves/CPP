@@ -5,52 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 19:24:42 by joeduard          #+#    #+#             */
-/*   Updated: 2023/05/16 17:22:06 by joeduard         ###   ########.fr       */
+/*   Created: 2023/07/13 13:18:43 by joeduard          #+#    #+#             */
+/*   Updated: 2023/07/13 13:18:45 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
-int main(void) {
-  std::cout << "[ CLASS A ]\n";
-  A *a = new A();
-  identify(a);
-  identify(*a);
-  delete a;
+int main( void )
+{
+	Base*	base;
 
-  std::cout << "\n";
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << std::endl;
+		base = generate();
 
-  std::cout << "[ CLASS B ]\n";
-  B *b = new B();
-  identify(b);
-  identify(*b);
-  delete b;
+		if (!base)
+			return (1);
 
-  std::cout << "\n";
+		identify(base);
+		identify(*base);
 
-  std::cout << "[ CLASS C ]\n";
-  C *c = new C();
-  identify(c);
-  identify(*c);
-  delete c;
+		delete base;
+	}	
+	std::cout << std::endl;
 
-  std::cout << "\n";
-
-  std::cout << "[ CLASS INVALID ]\n";
-  Base *base = new Base();
-  identify(base);
-  identify(*base);
-  delete base;
-
-  std::cout << "\n";
-
-  std::cout << "[ RANDOM CLASS]\n";
-  Base *random = generate();
-  identify(random);
-  identify(*random);
-  delete random;
-
-  return (0);
+	return (0);
 }
-
