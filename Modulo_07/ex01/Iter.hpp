@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:21:35 by joeduard          #+#    #+#             */
-/*   Updated: 2023/07/20 16:05:00 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:13:55 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ template <typename T>
 void iter(T* array, size_t lenght, void (*f)(const T&))
 {   
     if(!array || !f)
+        return;
     for(size_t i = 0; i < lenght; i++)
         f(array[i]);
 }
@@ -27,6 +28,7 @@ template <typename T>
 void iter(T* array, size_t lenght, void (*f)(T&))
 {   
     if(!array || !f)
+        return;
     for(size_t i = 0; i < lenght; i++)
         f(array[i]);
 }
