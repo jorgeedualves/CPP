@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:26:29 by joeduard          #+#    #+#             */
-/*   Updated: 2023/07/13 13:26:31 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/15 21:10:21 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void PmergeMe::sortVector()
 		else
 			K_pairs.push_back(std::make_pair(bucket[1],bucket[0]));
 	}
+	//insert sort!
 	std::sort(K_pairs.begin(), K_pairs.end(), &PmergeMe::pairCompare);
 	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
 	{
