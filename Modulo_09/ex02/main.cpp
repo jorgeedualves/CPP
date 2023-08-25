@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 13:26:18 by joeduard          #+#    #+#             */
-/*   Updated: 2023/08/19 00:51:37 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/20 23:04:54 by azamario          #+#    #+#             */
+/*   Updated: 2023/08/24 20:58:54 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
       return (1);
     }
 
+	std::cout << "---- VECTOR ----" << std::endl;
     std::cout << "Before: ";
 	input.printUnsorted();
 
@@ -46,19 +47,25 @@ int main(int argc, char *argv[])
 	end = clock();
 
     std::cout << "After: ";
-	input.printSorted();
+	input.printVectorSorted();
     std::cout << std::endl;
 	std::cout   << "Time to process a range of " << input.containerSize() 
                 << " elements with std::vector : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
-                << " seconds" << std::endl;
+                << " seconds" << "\n" << std::endl;
+
+	std::cout << "---- DEQUE ----" << std::endl;
+    std::cout << "Before: ";
+	input.printUnsorted();
 
     start = clock();
-	input.sortList();
+	input.sortDeque();
 	end = clock();
 
+    std::cout << "After: ";
+	input.printDequeSorted();
     std::cout << std::endl;
 	std::cout   << "Time to process a range of " << input.containerSize() 
-                << " elements with std::list : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
+                << " elements with std::deque : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
                 << " seconds" << std::endl;
 
     std::cout << std::endl;

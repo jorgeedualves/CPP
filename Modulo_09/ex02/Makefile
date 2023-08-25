@@ -4,7 +4,7 @@ SOURCE_DIR		=	./
 
 OBJ_DIR			=	objects
 
-HEADERS			=	PmergeMe.hpp
+HEADERS			=	PmergeMe.hpp PmergeMe.tpp
 
 SOURCES			=	$(addprefix $(SOURCE_DIR)/, $(SOURCE_FILES))
 

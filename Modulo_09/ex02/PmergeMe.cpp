@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 13:26:29 by joeduard          #+#    #+#             */
-/*   Updated: 2023/08/15 21:10:21 by joeduard         ###   ########.fr       */
+/*   Created: 2023/05/20 22:40:47 by azamario          #+#    #+#             */
+/*   Updated: 2023/08/24 20:54:29 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ bool PmergeMe::loadList(int argc, char** argv)
 
 		if (num < 0)
 			return (false);        
+		this->_inputVector.push_back(num);
 		this->_inputDeque.push_back(num);
 	}
 	return (true);
@@ -49,9 +50,9 @@ bool PmergeMe::loadList(int argc, char** argv)
 
 bool PmergeMe::hasDuplicate(void)
 {
-    _orderedDeque = this->_inputDeque;
-    std::sort(_orderedDeque.begin(), _orderedDeque.end(), &PmergeMe::compare);
-    return (std::unique(_orderedDeque.begin(), _orderedDeque.end()) != _orderedDeque.end());
+    _checkDuplicate = this->_inputVector;
+    std::sort(_checkDuplicate.begin(), _checkDuplicate.end(), &PmergeMe::compare);
+    return (std::unique(_checkDuplicate.begin(), _checkDuplicate.end()) != _checkDuplicate.end());
 }
 
 bool PmergeMe::compare(unsigned int a, unsigned int b)
@@ -63,7 +64,7 @@ void PmergeMe::printUnsorted(void)
 {
     int i = 0;
     
-    for (std::deque<unsigned int>::const_iterator it = _inputDeque.begin(); it != _inputDeque.end(); ++it)
+    for (std::vector<unsigned int>::const_iterator it = _inputVector.begin(); it != _inputVector.end(); ++it)
     {
         std::cout << *it << " ";
         i++;
@@ -76,7 +77,24 @@ void PmergeMe::printUnsorted(void)
     std::cout << std::endl;
 }
 
-void PmergeMe::printSorted(void)
+void PmergeMe::printVectorSorted(void)
+{
+    int i = 0;
+    
+    for (std::vector<unsigned int>::const_iterator it = _orderedVector.begin(); it != _orderedVector.end(); ++it)
+    {
+        std::cout << *it << " ";
+        i++;
+        if (i >= 15)
+        {
+            std::cout << "[...]";
+            break;
+        }
+    }
+    std::cout << std::endl;
+}
+
+void PmergeMe::printDequeSorted(void)
 {
     int i = 0;
     
@@ -95,86 +113,160 @@ void PmergeMe::printSorted(void)
 
 size_t PmergeMe::containerSize(void)
 {
-	return this->_inputDeque.size();
+	return this->_inputVector.size();
 }
 
 
-/*  Ford–Johnson algorithm  */
+/*  -- Ford–Johnson VECTOR algorithm -- */
 
 void PmergeMe::sortVector()
 {
-	std::deque<unsigned int> copy(this->_inputDeque);
-	std::deque<std::pair<unsigned int, unsigned int> > K_pairs;
-	unsigned int bucket[2];
-	this->_orderedVector.reserve(this->_inputDeque.size() + 2);
-	while (copy.size() > 1)										
-	{
-		bucket[0] = copy.front();
-		copy.pop_front();
-		bucket[1] = copy.front();
-		copy.pop_front();
-		if (bucket[0] < bucket[1])
-			K_pairs.push_back(std::make_pair(bucket[0],bucket[1]));
-		else
-			K_pairs.push_back(std::make_pair(bucket[1],bucket[0]));
-	}
-	//insert sort!
-	std::sort(K_pairs.begin(), K_pairs.end(), &PmergeMe::pairCompare);
-	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
-	{
-		this->_orderedVector.push_back((*it).second);
-	}
-	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
-	{
-		this->binaryVectorInsert((*it).first);
-	}
-	if (copy.size() == 1)
-		this->binaryVectorInsert(copy.front());
-};
+	int straggler = -1;
+	_orderedVector = this->_inputVector;
+	std::vector<std::pair<unsigned int, unsigned int> > pairs;
+  	std::vector<unsigned int> mainSeq, pendingSeq, jacobSeq, indexSeq;
 
-void PmergeMe::sortList()
-{
-	std::deque<unsigned int> copy(this->_inputDeque);
-	std::deque<std::pair<unsigned int, unsigned int> > K_pairs;
-	unsigned int bucket[2];
-
-	while (copy.size() > 1)
+  	if (_orderedVector.size() < 2 or isSorted(_orderedVector))
 	{
-		bucket[0] = copy.front();
-		copy.pop_front();
-		bucket[1] = copy.front();
-		copy.pop_front();
-		if (bucket[0] < bucket[1])
-			K_pairs.push_back(std::make_pair(bucket[0],bucket[1]));
-		else
-			K_pairs.push_back(std::make_pair(bucket[1],bucket[0]));
-	}
-	std::sort(K_pairs.begin(), K_pairs.end(), &PmergeMe::pairCompare);
-	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
+		return;
+  	}
+  	if (hasStraggler(_orderedVector))
 	{
-		this->_orderedList.push_back((*it).second);
-	}
-	for (std::deque<std::pair<unsigned int, unsigned int> >::iterator it = K_pairs.begin(); it < K_pairs.end(); it++)
-	{
-		this->binaryListInsert((*it).first);
-	}
-	if (copy.size() == 1)
-		this->binaryListInsert(copy.front());
-}
-	
-void PmergeMe::binaryVectorInsert(unsigned int value)
-{
-	std::vector<unsigned int>::iterator it = std::lower_bound(this->_orderedVector.begin(), this->_orderedVector.end(), value);
-	this->_orderedVector.insert(it, value);
+    	straggler = _orderedVector.back();
+    	_orderedVector.pop_back();
+  	}
+ 	pairs = createVectorPairs(_orderedVector);
+	sortPairs(pairs);
+  	insertionSortByLargestValue(pairs, pairs.size());
+ 	mainSeq = createVectorMainSeq(pairs);
+	pendingSeq = createVectorPendingSeq(pairs);
+	jacobSeq = createJacobsthalSeq(pendingSeq);
+  	indexSeq = createIndexSeq(jacobSeq, pendingSeq);
+    fillMainSeq(mainSeq, indexSeq, pendingSeq);
+  	if (straggler >= 0)
+    	insertStraggler(mainSeq, straggler);
+	_orderedVector.assign(mainSeq.begin(), mainSeq.end());
 }
 
-void PmergeMe::binaryListInsert(unsigned int value)
+std::vector<std::pair<uint, uint> >
+PmergeMe::createVectorPairs(std::vector<uint> &_orderedVector)
 {
-	std::list<unsigned int>::iterator it = std::lower_bound(this->_orderedList.begin(), this->_orderedList.end(), value);
-	this->_orderedList.insert(it, value);
+	std::vector<uint>::iterator it, next;
+  	std::vector<std::pair<uint, uint> > pairs;
+
+  	it = _orderedVector.begin();
+  	while (it != _orderedVector.end())
+	{
+    	next = it + 1;
+    	pairs.push_back(std::make_pair(*it, *next));
+    	it += 2;
+  	}
+  	return (pairs);
 }
 
-bool PmergeMe::pairCompare(std::pair<unsigned int, unsigned int> a, std::pair<unsigned int, unsigned int> b)
+std::vector<uint> PmergeMe::createVectorMainSeq(std::vector<std::pair<uint, uint> > &pairs)
 {
-	return (a.second < b.second);
+  std::vector<uint> mainSeq;
+  std::vector<std::pair<uint, uint> >::iterator it = pairs.begin();
+
+  for (it = pairs.begin(); it != pairs.end(); it++)
+  {
+	mainSeq.push_back(it->second);
+  }
+  return (mainSeq);
+}
+
+std::vector<uint> PmergeMe::createVectorPendingSeq(std::vector<std::pair<uint, uint> > &pairs)
+{
+  std::vector<uint> mainSeq;
+  std::vector<std::pair<uint, uint> >::iterator it;
+
+  for (it = pairs.begin(); it != pairs.end(); it++)
+  {
+    mainSeq.push_back(it->first);
+  }
+  return (mainSeq);
+}
+
+
+/*  -- Ford–Johnson DEQUE algorithm -- */
+
+void PmergeMe::sortDeque()
+{
+	int straggler = -1;
+	_orderedDeque = this->_inputDeque;
+	std::deque<std::pair<unsigned int, unsigned int> > pairs;
+  	std::deque<unsigned int> mainSeq, pendingSeq, jacobSeq, indexSeq;
+
+  	if (_orderedDeque.size() < 2 or isSorted(_orderedDeque))
+	{
+		return;
+  	}
+  	if (hasStraggler(_orderedDeque))
+	{
+    	straggler = _orderedDeque.back();
+    	_orderedDeque.pop_back();
+  	}
+ 	pairs = createDequePairs(_orderedDeque);
+	sortPairs(pairs);
+  	insertionSortByLargestValue(pairs, pairs.size());
+ 	mainSeq = createDequeMainSeq(pairs);
+	pendingSeq = createDequePendingSeq(pairs);
+	jacobSeq = createJacobsthalSeq(pendingSeq);
+  	indexSeq = createIndexSeq(jacobSeq, pendingSeq);
+    fillMainSeq(mainSeq, indexSeq, pendingSeq);
+  	if (straggler >= 0)
+    	insertStraggler(mainSeq, straggler);
+	_orderedDeque.assign(mainSeq.begin(), mainSeq.end());
+}
+
+std::deque<std::pair<uint, uint> > PmergeMe::createDequePairs(std::deque<uint> &arr)
+{
+	std::deque<uint>::iterator it, next;
+  	std::deque<std::pair<uint, uint> > pairs;
+
+  	it = arr.begin();
+  	while (it != arr.end())
+	{
+    	next = it + 1;
+    	pairs.push_back(std::make_pair(*it, *next));
+    	it += 2;
+  	}
+  	return (pairs);
+}
+
+std::deque<uint> PmergeMe::createDequeMainSeq(std::deque<std::pair<uint, uint> > &pairs)
+{
+	std::deque<uint> mainSeq;
+  	std::deque<std::pair<uint, uint> >::iterator it = pairs.begin();
+
+  	for (it = pairs.begin(); it != pairs.end(); it++)
+	{
+    	mainSeq.push_back(it->second);
+  	}
+  	return (mainSeq);
+}
+
+std::deque<uint> PmergeMe::createDequePendingSeq(std::deque<std::pair<uint, uint> > &pairs)
+{
+	std::deque<uint> mainSeq;
+   std::deque<std::pair<uint, uint> >::iterator it;
+
+  	for (it = pairs.begin(); it != pairs.end(); it++)
+	{
+    	mainSeq.push_back(it->first);
+  	}
+  	return (mainSeq);
+}
+
+
+/*  -- Ford–Johnson Jacobsthal number -- */
+
+int PmergeMe::jacobsthal(int n)
+{
+  if (n == 0)
+    return (0);
+  if (n == 1)
+    return (1);
+  return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
 }
