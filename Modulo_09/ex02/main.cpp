@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 23:04:54 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/24 20:58:54 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:57:21 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	if (!input.loadList(argc, argv))
+	if (!input.loadNumber(argc, argv))
 	{
 		std::cerr << "Error: Negative number not allowed\n" << std::endl;
 		return (1);

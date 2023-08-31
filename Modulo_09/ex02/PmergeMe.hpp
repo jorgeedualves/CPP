@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azamario <azamario@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:34:20 by azamario          #+#    #+#             */
-/*   Updated: 2023/06/26 12:39:18 by azamario         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:29:03 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class PmergeMe
 
         PmergeMe &operator=(const PmergeMe &rhs);
 
-		bool loadList(int argc, char **argv);
+		bool loadNumber(int argc, char **argv);
         bool hasDuplicate(void);
 		static bool compare(unsigned int a, unsigned int b);
 
@@ -56,26 +56,23 @@ class PmergeMe
 		std::deque<unsigned int> _orderedDeque;
 
 		static std::vector<std::pair<uint, uint> >
-  		createVectorPairs(std::vector<uint> &copy);
+  		createVectorPairs(std::vector<uint> &_orderedVector);
 
 		static std::vector<uint>
-  		createVectorMainSeq(std::vector<std::pair<uint, uint> > &pairs);
+  		createVectormainSequence(std::vector<std::pair<uint, uint> > &pairs);
 
 		static std::vector<uint>
   		createVectorPendingSeq(std::vector<std::pair<uint, uint> > &pairs);
 
 		static std::deque<std::pair<uint, uint> >
-  		createDequePairs(std::deque<uint> &copy);
+  		createDequePairs(std::deque<uint> &_orderedDeque);
 
 		static std::deque<uint>
-  		createDequeMainSeq(std::deque<std::pair<uint, uint> > &pairs);
+  		createDequemainSequence(std::deque<std::pair<uint, uint> > &pairs);
 
 		static std::deque<uint>
   		createDequePendingSeq(std::deque<std::pair<uint, uint> > &pairs);
 
-
 };
-
-#include "PmergeMe.tpp"
 
 #endif

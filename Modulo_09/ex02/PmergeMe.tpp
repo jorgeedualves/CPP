@@ -4,35 +4,40 @@
 
 #include "PmergeMe.hpp"
 
-template <class Seq> static bool isSorted(Seq &container)
+//função que verifica se um container está ordenada em ordem ascendente.
+template <class Sequence>
+static bool isSortedAscending(const Sequence &container)
 {
-    typename Seq::iterator it, next;
+    typename Sequence::const_iterator current, next;
 
-    for (it = container.begin(); it != container.end(); it++)
+    for (current = container.begin(); current != container.end(); ++current)
     {
-      next = it + 1;
-      if (next == container.end())
-      {
-        break;
-      }
-      if (*next < *it)
-      {
-        return (false);
-      }
+        next = current;
+        ++next;
+        if (next == container.end())
+        {
+            break;
+        }
+        if (*next < *current)
+        {
+            return false;
+        }
     }
-    return (true);
-};
+    return true;
+}
 
-template <class Seq> static bool hasStraggler(Seq &container)
+// função que verifica se um container tem um "straggler", ou seja, um elemento excedente 
+template <class Sequence> static bool hasStraggler(Sequence &container)
 {
     return (static_cast<bool>(container.size() % 2));
 };
 
-template <class PairSeq> static void sortPairs(PairSeq &container)
+//função que recebe um contêiner de pares genéricos e classifica cada par dentro desse contêiner.
+template <class PairContainer> static void sortPairs(PairContainer &pairs)
 {
-  typename PairSeq::iterator it;
+  typename PairContainer::iterator it;
 
-  for (it = container.begin(); it != container.end(); it++)
+  for (it = pairs.begin(); it != pairs.end(); ++it)
   {
     if (it->first > it->second)
     {
@@ -41,120 +46,130 @@ template <class PairSeq> static void sortPairs(PairSeq &container)
   }
 };
 
-template <class PairSeq> static void insertionSortByLargestValue(PairSeq &seq, int n)
+//função que realiza uma ordenação por inserção com base no valor mais alto do par.
+template <class PairSequence>
+static void insertionSortByLargestValue(PairSequence &pairs, int size)
 {
-  int i;
-  typename PairSeq::value_type lastElement;
+    if (size <= 1)
+    {
+        return;
+    }
 
-  if (n <= 1)
-  {
-    return;
-  }
-  insertionSortByLargestValue(seq, n - 1);
-  i = n - 2;
-  lastElement = seq[n - 1];
-  while (i >= 0 && seq[i].second > lastElement.second)
-  {
-    seq[i + 1] = seq[i];
-    i--;
-  }
-    seq[i + 1] = lastElement;
-};
+    insertionSortByLargestValue(pairs, size - 1);
 
-template <class Seq> static Seq createJacobsthalSeq(Seq &pendingSeq)
+    typename PairSequence::value_type lastPair = pairs[size - 1];
+    int currentIndex = size - 2;
+
+    while (currentIndex >= 0 && pairs[currentIndex].second > lastPair.second)
+    {
+        pairs[currentIndex + 1] = pairs[currentIndex];
+        currentIndex--;
+    }
+
+    pairs[currentIndex + 1] = lastPair;
+}
+
+
+//função que cria uma sequência de números de Jacobsthal com base em uma sequência pendente.
+template <class Sequence>
+static Sequence createJacobsthalSequence(Sequence &pendingSequence)
 {
-  int idx;
+  int index;
   size_t size;
-  size_t jacobsthalIdx;
-  Seq jacobsthalSeq;
+  size_t jacobsthalIndex;
+  Sequence jacobsthalSequence;
 
-  if (pendingSeq.empty())
+  if (pendingSequence.empty())
   {
-    return (jacobsthalSeq);
+    return (jacobsthalSequence);
   }
-  idx = 3;
-  size = pendingSeq.size();
-  while ((jacobsthalIdx = PmergeMe::jacobsthal(idx)) < size)
+  index = 3;
+  size = pendingSequence.size();
+  while ((jacobsthalIndex = PmergeMe::jacobsthal(index)) < size)
   {
-    jacobsthalSeq.push_back(jacobsthalIdx);
-    idx++;
+    std::cout << "index: " << index << std::endl;
+    jacobsthalSequence.push_back(jacobsthalIndex);
+    index++;
   }
-  jacobsthalSeq.push_back(size);
-  return (jacobsthalSeq);
+  jacobsthalSequence.push_back(size);
+  return (jacobsthalSequence);
 };
 
-template <class Seq> static Seq createIndexSeq(Seq &jacobSeq, Seq &pendingSeq)
+//função que cria uma sequência de índices com base nas sequências de Jacobsthal e pendente.
+template <class Sequence>static Sequence createIndexSequence(Sequence &jacobsthalSequence, Sequence &pendingSequence)
 {
-  Seq indexSeq(1, 0);
+  Sequence indexSequence(1, 0);
   size_t index = 1;
   size_t lastIndex = 1;
-  typename Seq::iterator it;
+  typename Sequence::iterator it;
 
-  if (pendingSeq.empty())
+  if (pendingSequence.empty())
   {
-    return (indexSeq);
+    return (indexSequence);
   }
-  for (it = jacobSeq.begin(); it != jacobSeq.end(); it++)
+  for (it = jacobsthalSequence.begin(); it != jacobsthalSequence.end(); it++)
   {
     index = *it;
     size_t pos = index;
     while (pos > lastIndex) {
-      indexSeq.push_back(pos - 1);
+      indexSequence.push_back(pos - 1);
       pos--;
     }
     lastIndex = index;
+    std::cout << "index: " << pos << std::endl; // APPPPPPPPPAAGGGGGGGGAAAAAAAAAAARRRRRRR
   }
-  return (indexSeq);
+  return (indexSequence);
 };
 
-template <class SeqIt> static SeqIt findPos(SeqIt begin, SeqIt end, uint target)
+//Função que procura a posição correta para inserir um valor na sequência ordenada.(mainSequence)
+template <class SequenceIterator>
+static SequenceIterator findPosition(SequenceIterator begin, SequenceIterator end, uint target)
 {
-  SeqIt low, high;
+  SequenceIterator lowerBound = begin;
+  SequenceIterator upperBound = end;
 
-  low = begin;
-  high = end;
-  while (low < high) {
-    SeqIt mid = low + (high - low) / 2;
+  while (lowerBound < upperBound) {
+    SequenceIterator middle = lowerBound + (upperBound - lowerBound) / 2;
 
-    if (*mid < target)
+    if (*middle < target)
     {
-      low = mid + 1;
+      lowerBound = middle + 1;
     } else
     {
-      high = mid;
+      upperBound = middle;
     }
   }
-  return (low);
+  return (lowerBound);
 }
 
-template <class Seq> static void fillMainSeq(Seq &mainSeq, Seq &indexSeq, Seq &pendingSeq)
+//Função que preenche uma sequência principal com base em sequências de índices e pendente.
+template <class Sequence>
+static void fillMainSequence(Sequence &mainSequence, Sequence &indexSequence, Sequence &pendingSequence)
 {
-  uint target;
+  uint targetValue;
   uint addedCount;
-  typename Seq::iterator it;
-  typename Seq::iterator targetPos;
+  typename Sequence::iterator it;
+  typename Sequence::iterator targetPosition;
 
   addedCount = 0;
-  for (it = indexSeq.begin(); it != indexSeq.end(); it++)
+  for (it = indexSequence.begin(); it != indexSequence.end(); it++)
   {
-    target = pendingSeq.at(*it);
-    targetPos = findPos(mainSeq.begin(),
-                        mainSeq.begin() + *it + 1 + addedCount, target);
-    mainSeq.insert(targetPos, target);
+    targetValue = pendingSequence.at(*it);
+    targetPosition = findPosition(mainSequence.begin(),
+                        mainSequence.begin() + *it + 1 + addedCount, targetValue);
+    mainSequence.insert(targetPosition, targetValue);
     addedCount++;
   }
 };
 
-template <class Seq>
-static void insertStraggler(Seq &mainSeq, uint straggler)
+//função estática que insere um valor solto (straggler) em uma sequência principal.
+template <class Sequence>
+static void insertStragglerElement(Sequence &mainSequence, uint stragglerValue)
 {
-  typename Seq::iterator stragglerPos;
+  typename Sequence::iterator stragglerPos;
 
-  stragglerPos = findPos(mainSeq.begin(), mainSeq.end(), straggler);
-  mainSeq.insert(stragglerPos, straggler);
+  stragglerPos = findPosition(mainSequence.begin(), mainSequence.end(), stragglerValue);
+  mainSequence.insert(stragglerPos, stragglerValue);
 };
-
-
-
 
 #endif

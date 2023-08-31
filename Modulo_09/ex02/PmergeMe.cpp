@@ -6,11 +6,12 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:40:47 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/24 20:54:29 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:21:39 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include "PmergeMe.tpp"
 
 PmergeMe::PmergeMe(void)
 {
@@ -34,18 +35,21 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
     return (*this);
 }
 
-bool PmergeMe::loadList(int argc, char** argv)
+bool PmergeMe::loadNumber(int argc, char** argv)
 {
-	for (int i = 1; i < argc; ++i)
-	{
-		int num = std::atoi(argv[i]);
+    for (int i = 1; i < argc; ++i)
+    {
+        int number = std::atoi(argv[i]);
 
-		if (num < 0)
-			return (false);        
-		this->_inputVector.push_back(num);
-		this->_inputDeque.push_back(num);
-	}
-	return (true);
+        if (number < 0)
+        {
+            return false;
+        }
+
+        this->_inputVector.push_back(number);
+        this->_inputDeque.push_back(number);
+    }
+    return true;
 }
 
 bool PmergeMe::hasDuplicate(void)
@@ -124,9 +128,9 @@ void PmergeMe::sortVector()
 	int straggler = -1;
 	_orderedVector = this->_inputVector;
 	std::vector<std::pair<unsigned int, unsigned int> > pairs;
-  	std::vector<unsigned int> mainSeq, pendingSeq, jacobSeq, indexSeq;
+  	std::vector<unsigned int> mainSequence, pendingSeq, jacobSeq, indexSeq;
 
-  	if (_orderedVector.size() < 2 or isSorted(_orderedVector))
+  	if (_orderedVector.size() < 2 or isSortedAscending(_orderedVector))
 	{
 		return;
   	}
@@ -138,14 +142,14 @@ void PmergeMe::sortVector()
  	pairs = createVectorPairs(_orderedVector);
 	sortPairs(pairs);
   	insertionSortByLargestValue(pairs, pairs.size());
- 	mainSeq = createVectorMainSeq(pairs);
+ 	mainSequence = createVectormainSequence(pairs);
 	pendingSeq = createVectorPendingSeq(pairs);
-	jacobSeq = createJacobsthalSeq(pendingSeq);
-  	indexSeq = createIndexSeq(jacobSeq, pendingSeq);
-    fillMainSeq(mainSeq, indexSeq, pendingSeq);
+	jacobSeq = createJacobsthalSequence(pendingSeq);
+  	indexSeq = createIndexSequence(jacobSeq, pendingSeq);
+    fillMainSequence(mainSequence, indexSeq, pendingSeq);
   	if (straggler >= 0)
-    	insertStraggler(mainSeq, straggler);
-	_orderedVector.assign(mainSeq.begin(), mainSeq.end());
+    	insertStragglerElement(mainSequence, straggler);
+	_orderedVector.assign(mainSequence.begin(), mainSequence.end());
 }
 
 std::vector<std::pair<uint, uint> >
@@ -164,28 +168,28 @@ PmergeMe::createVectorPairs(std::vector<uint> &_orderedVector)
   	return (pairs);
 }
 
-std::vector<uint> PmergeMe::createVectorMainSeq(std::vector<std::pair<uint, uint> > &pairs)
+std::vector<uint> PmergeMe::createVectormainSequence(std::vector<std::pair<uint, uint> > &pairs)
 {
-  std::vector<uint> mainSeq;
+  std::vector<uint> mainSequence;
   std::vector<std::pair<uint, uint> >::iterator it = pairs.begin();
 
   for (it = pairs.begin(); it != pairs.end(); it++)
   {
-	mainSeq.push_back(it->second);
+	mainSequence.push_back(it->second);
   }
-  return (mainSeq);
+  return (mainSequence);
 }
 
 std::vector<uint> PmergeMe::createVectorPendingSeq(std::vector<std::pair<uint, uint> > &pairs)
 {
-  std::vector<uint> mainSeq;
+  std::vector<uint> mainSequence;
   std::vector<std::pair<uint, uint> >::iterator it;
 
   for (it = pairs.begin(); it != pairs.end(); it++)
   {
-    mainSeq.push_back(it->first);
+    mainSequence.push_back(it->first);
   }
-  return (mainSeq);
+  return (mainSequence);
 }
 
 
@@ -196,9 +200,9 @@ void PmergeMe::sortDeque()
 	int straggler = -1;
 	_orderedDeque = this->_inputDeque;
 	std::deque<std::pair<unsigned int, unsigned int> > pairs;
-  	std::deque<unsigned int> mainSeq, pendingSeq, jacobSeq, indexSeq;
+  	std::deque<unsigned int> mainSequence, pendingSeq, jacobSeq, indexSeq;
 
-  	if (_orderedDeque.size() < 2 or isSorted(_orderedDeque))
+  	if (_orderedDeque.size() < 2 or isSortedAscending(_orderedDeque))
 	{
 		return;
   	}
@@ -210,14 +214,14 @@ void PmergeMe::sortDeque()
  	pairs = createDequePairs(_orderedDeque);
 	sortPairs(pairs);
   	insertionSortByLargestValue(pairs, pairs.size());
- 	mainSeq = createDequeMainSeq(pairs);
+ 	mainSequence = createDequemainSequence(pairs);
 	pendingSeq = createDequePendingSeq(pairs);
-	jacobSeq = createJacobsthalSeq(pendingSeq);
-  	indexSeq = createIndexSeq(jacobSeq, pendingSeq);
-    fillMainSeq(mainSeq, indexSeq, pendingSeq);
+	jacobSeq = createJacobsthalSequence(pendingSeq);
+  	indexSeq = createIndexSequence(jacobSeq, pendingSeq);
+    fillMainSequence(mainSequence, indexSeq, pendingSeq);
   	if (straggler >= 0)
-    	insertStraggler(mainSeq, straggler);
-	_orderedDeque.assign(mainSeq.begin(), mainSeq.end());
+    	insertStragglerElement(mainSequence, straggler);
+	_orderedDeque.assign(mainSequence.begin(), mainSequence.end());
 }
 
 std::deque<std::pair<uint, uint> > PmergeMe::createDequePairs(std::deque<uint> &arr)
@@ -235,28 +239,28 @@ std::deque<std::pair<uint, uint> > PmergeMe::createDequePairs(std::deque<uint> &
   	return (pairs);
 }
 
-std::deque<uint> PmergeMe::createDequeMainSeq(std::deque<std::pair<uint, uint> > &pairs)
+std::deque<uint> PmergeMe::createDequemainSequence(std::deque<std::pair<uint, uint> > &pairs)
 {
-	std::deque<uint> mainSeq;
+	std::deque<uint> mainSequence;
   	std::deque<std::pair<uint, uint> >::iterator it = pairs.begin();
 
   	for (it = pairs.begin(); it != pairs.end(); it++)
 	{
-    	mainSeq.push_back(it->second);
+    	mainSequence.push_back(it->second);
   	}
-  	return (mainSeq);
+  	return (mainSequence);
 }
 
 std::deque<uint> PmergeMe::createDequePendingSeq(std::deque<std::pair<uint, uint> > &pairs)
 {
-	std::deque<uint> mainSeq;
+	std::deque<uint> mainSequence;
    std::deque<std::pair<uint, uint> >::iterator it;
 
   	for (it = pairs.begin(); it != pairs.end(); it++)
 	{
-    	mainSeq.push_back(it->first);
+    	mainSequence.push_back(it->first);
   	}
-  	return (mainSeq);
+  	return (mainSequence);
 }
 
 
