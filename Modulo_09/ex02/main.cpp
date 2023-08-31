@@ -6,11 +6,12 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 23:04:54 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/30 19:57:21 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:33:03 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include "PmergeMe.tpp"
 
 int main(int argc, char *argv[])
 {
@@ -40,14 +41,14 @@ int main(int argc, char *argv[])
 
 	std::cout << "---- VECTOR ----" << std::endl;
     std::cout << "Before: ";
-	input.printUnsorted();
+	printUnsorted(input.getVector());
 
     start = clock();
 	input.sortVector();
 	end = clock();
 
     std::cout << "After: ";
-	input.printVectorSorted();
+	printSorted(input.getOrderedVector());
     std::cout << std::endl;
 	std::cout   << "Time to process a range of " << input.containerSize() 
                 << " elements with std::vector : " << static_cast<double>(end - start) / CLOCKS_PER_SEC
@@ -55,14 +56,14 @@ int main(int argc, char *argv[])
 
 	std::cout << "---- DEQUE ----" << std::endl;
     std::cout << "Before: ";
-	input.printUnsorted();
+	printUnsorted(input.getDeque());
 
     start = clock();
 	input.sortDeque();
 	end = clock();
 
     std::cout << "After: ";
-	input.printDequeSorted();
+	printSorted(input.getOrderedDeque());
     std::cout << std::endl;
 	std::cout   << "Time to process a range of " << input.containerSize() 
                 << " elements with std::deque : " << static_cast<double>(end - start) / CLOCKS_PER_SEC

@@ -26,6 +26,47 @@ static bool isSortedAscending(const Sequence &container)
     return true;
 }
 
+
+template<typename Container>
+void printUnsorted(const Container& inputContainer, size_t maxElements = 15)
+{
+  size_t i = 0;
+  
+  for (typename Container::const_iterator it = inputContainer.begin(); it != inputContainer.end(); ++it)
+  {
+    std::cout << *it << " ";
+    i++;
+    if (i >= maxElements)
+    {
+      std::cout << "[...]";
+      break;
+    }
+  }
+  std::cout << std::endl;
+}
+
+template<typename Container>
+void printSorted(const Container& orderedContainer, size_t maxElements = 15)
+{
+    size_t i = 0;
+    
+    for (typename Container::const_iterator it = orderedContainer.begin(); it != orderedContainer.end(); ++it)
+    {
+        std::cout << *it << " ";
+        i++;
+        if (i >= maxElements)
+        {
+            std::cout << "[...]";
+            break;
+        }
+    }
+    std::cout << std::endl;
+}
+
+
+
+
+
 // função que verifica se um container tem um "straggler", ou seja, um elemento excedente 
 template <class Sequence> static bool hasStraggler(Sequence &container)
 {
@@ -87,7 +128,6 @@ static Sequence createJacobsthalSequence(Sequence &pendingSequence)
   size = pendingSequence.size();
   while ((jacobsthalIndex = PmergeMe::jacobsthal(index)) < size)
   {
-    std::cout << "index: " << index << std::endl;
     jacobsthalSequence.push_back(jacobsthalIndex);
     index++;
   }
@@ -116,7 +156,6 @@ template <class Sequence>static Sequence createIndexSequence(Sequence &jacobstha
       pos--;
     }
     lastIndex = index;
-    std::cout << "index: " << pos << std::endl; // APPPPPPPPPAAGGGGGGGGAAAAAAAAAAARRRRRRR
   }
   return (indexSequence);
 };

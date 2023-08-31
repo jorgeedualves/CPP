@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:40:47 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/30 20:21:39 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:36:40 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
         *this = rhs;
     return (*this);
 }
+
+const std::vector<unsigned int>& PmergeMe::getVector() const
+{
+    return _inputVector;
+}
+
+const std::deque<unsigned int>& PmergeMe::getDeque() const
+{
+    return _inputDeque;
+}
+
+const std::vector<unsigned int>& PmergeMe::getOrderedVector() const
+{
+    return _orderedVector;
+}
+
+const std::deque<unsigned int>& PmergeMe::getOrderedDeque() const
+{
+    return _inputDeque;
+}
+
 
 bool PmergeMe::loadNumber(int argc, char** argv)
 {
@@ -64,65 +85,12 @@ bool PmergeMe::compare(unsigned int a, unsigned int b)
 	return a < b;
 }
 
-void PmergeMe::printUnsorted(void)
-{
-    int i = 0;
-    
-    for (std::vector<unsigned int>::const_iterator it = _inputVector.begin(); it != _inputVector.end(); ++it)
-    {
-        std::cout << *it << " ";
-        i++;
-        if (i >= 15)
-        {
-            std::cout << "[...]";
-            break;
-        }
-    }
-    std::cout << std::endl;
-}
-
-void PmergeMe::printVectorSorted(void)
-{
-    int i = 0;
-    
-    for (std::vector<unsigned int>::const_iterator it = _orderedVector.begin(); it != _orderedVector.end(); ++it)
-    {
-        std::cout << *it << " ";
-        i++;
-        if (i >= 15)
-        {
-            std::cout << "[...]";
-            break;
-        }
-    }
-    std::cout << std::endl;
-}
-
-void PmergeMe::printDequeSorted(void)
-{
-    int i = 0;
-    
-    for (std::deque<unsigned int>::const_iterator it = _orderedDeque.begin(); it != _orderedDeque.end(); ++it)
-    {
-        std::cout << *it << " ";
-        i++;
-        if (i >= 15)
-        {
-            std::cout << "[...]";
-            break;
-        }
-    }
-    std::cout << std::endl;
-}
-
 size_t PmergeMe::containerSize(void)
 {
 	return this->_inputVector.size();
 }
 
-
 /*  -- Ford–Johnson VECTOR algorithm -- */
-
 void PmergeMe::sortVector()
 {
 	int straggler = -1;
@@ -194,7 +162,6 @@ std::vector<uint> PmergeMe::createVectorPendingSeq(std::vector<std::pair<uint, u
 
 
 /*  -- Ford–Johnson DEQUE algorithm -- */
-
 void PmergeMe::sortDeque()
 {
 	int straggler = -1;
@@ -253,8 +220,9 @@ std::deque<uint> PmergeMe::createDequemainSequence(std::deque<std::pair<uint, ui
 
 std::deque<uint> PmergeMe::createDequePendingSeq(std::deque<std::pair<uint, uint> > &pairs)
 {
+
 	std::deque<uint> mainSequence;
-   std::deque<std::pair<uint, uint> >::iterator it;
+   	std::deque<std::pair<uint, uint> >::iterator it;
 
   	for (it = pairs.begin(); it != pairs.end(); it++)
 	{

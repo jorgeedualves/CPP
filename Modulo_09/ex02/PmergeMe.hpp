@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:34:20 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/30 21:29:03 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:14:06 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <stdexcept>
 #include <algorithm>
 #include <deque>
 #include <vector>
@@ -31,13 +30,16 @@ class PmergeMe
 
         PmergeMe &operator=(const PmergeMe &rhs);
 
+		const std::vector<unsigned int>& getVector() const;
+		const std::deque<unsigned int>& getDeque() const;
+		const std::vector<unsigned int>& getOrderedVector() const;
+		const std::deque<unsigned int>& getOrderedDeque() const;
+
 		bool loadNumber(int argc, char **argv);
         bool hasDuplicate(void);
 		static bool compare(unsigned int a, unsigned int b);
 
-        void printUnsorted(void);
-        void printVectorSorted(void);
-        void printDequeSorted(void);
+		
 		size_t containerSize(void);
 
 		void sortVector(void);
