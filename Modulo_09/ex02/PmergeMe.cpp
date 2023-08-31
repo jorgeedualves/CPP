@@ -6,7 +6,7 @@
 /*   By: joeduard <joeduard@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:40:47 by azamario          #+#    #+#             */
-/*   Updated: 2023/08/31 10:36:40 by joeduard         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:20:09 by joeduard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ const std::vector<unsigned int>& PmergeMe::getOrderedVector() const
 
 const std::deque<unsigned int>& PmergeMe::getOrderedDeque() const
 {
-    return _inputDeque;
+    return _orderedDeque;
 }
 
 
@@ -66,7 +66,6 @@ bool PmergeMe::loadNumber(int argc, char** argv)
         {
             return false;
         }
-
         this->_inputVector.push_back(number);
         this->_inputDeque.push_back(number);
     }

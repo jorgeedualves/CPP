@@ -13,7 +13,7 @@ OBJECTS			=	$(SOURCES:$(SOURCE_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 NAME			=	PmergeMe
 
 CC				=	c++
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 -g #-fsanitize=address
 
 RM				=	rm -rf
 
@@ -36,7 +36,7 @@ run:
 			./$(NAME)
 
 runv:		all
-			valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./btc
+			@valgrind -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./$(NAME) `shuf -i 1-1000 -n 3000 | tr "\n" " " `
 
 clean:
 			@$(RM) $(OBJ_DIR)

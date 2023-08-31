@@ -63,10 +63,6 @@ void printSorted(const Container& orderedContainer, size_t maxElements = 15)
     std::cout << std::endl;
 }
 
-
-
-
-
 // função que verifica se um container tem um "straggler", ou seja, um elemento excedente 
 template <class Sequence> static bool hasStraggler(Sequence &container)
 {
@@ -109,7 +105,6 @@ static void insertionSortByLargestValue(PairSequence &pairs, int size)
 
     pairs[currentIndex + 1] = lastPair;
 }
-
 
 //função que cria uma sequência de números de Jacobsthal com base em uma sequência pendente.
 template <class Sequence>
@@ -173,7 +168,8 @@ static SequenceIterator findPosition(SequenceIterator begin, SequenceIterator en
     if (*middle < target)
     {
       lowerBound = middle + 1;
-    } else
+    }
+    else
     {
       upperBound = middle;
     }
